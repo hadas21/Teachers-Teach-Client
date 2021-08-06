@@ -3,6 +3,7 @@ const Modal = require('bootstrap').Modal
 
 const signUpModal = new Modal($('#signUpModal'))
 const logInModal = new Modal($('#logInModal'))
+const changePwdModal = new Modal($('#changePwdModal'))
 
 store.$passwordMessage = $('#passwordMessage')
 store.$wrongPasswordMessage = $('#wrongPasswordMessage')
@@ -76,6 +77,13 @@ const onLogOutSuccess = () => {
 
 }
 
+const onChangePwdSuccess = function() {
+    changePwdModal.hide()
+}
+
+const onChangePwdFailure = function() {
+
+}
 module.exports = {
     onSignUpSuccess,
     onSignUpFailure,
@@ -83,5 +91,7 @@ module.exports = {
     onLogInFailure,
     passwordInputSuccess,
     passwordInputFailure,
-    onLogOutSuccess
+    onLogOutSuccess,
+    onChangePwdSuccess,
+    onChangePwdFailure
 }

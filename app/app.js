@@ -10,7 +10,7 @@ store.$password = $('#password')
 store.$signUpForm = $('#signUpForm')
 store.$logInForm = $('#logInForm')
 store.$logOutBtn = $('#logOutBtn')
-store.$changePwdModal = $('#changePwdModal')
+store.$changePwdForm = $('#changePwdForm')
 store.$changePwdBtn = $('#changePwdBtn')
 store.$signUpBtn = $('#signUpBtn')
 $(() => {
@@ -25,7 +25,8 @@ $(() => {
     store.$logInForm.on('submit', eventsTeach.onLogIn)
 
     store.$logOutBtn.on('click', eventsTeach.onLogOut)
-    store.$changePwdModal.on('click', eventsTeach.onChangePwd)
-        //store.$signUpBtn.on('click', eventsTeach.signUpBtn)
+    store.$changePwdForm.on('submit', eventsTeach.onChangePwd)
+    store.$signUpMdlBtn.on('click', eventsTeach.signUpMdlOpn)
+    store.$logInMdlBtn.on('click', eventsTeach.logInMdlOpn)
 
 })

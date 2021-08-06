@@ -1,15 +1,15 @@
 let apiUrl
 const apiUrls = {
-  production: '<replace-with-heroku-url>',
-  development: 'http://localhost:4741'
+    production: 'https://stormy-coast-61962.herokuapp.com',
+    development: 'http://localhost:4741'
 }
 
 if (window.location.hostname === 'localhost') {
-  apiUrl = apiUrls.development
+    apiUrl = apiUrls.development
 } else {
-  apiUrl = apiUrls.production
+    apiUrl = apiUrls.production
 }
 
 module.exports = {
-  apiUrl
+    apiUrl
 }

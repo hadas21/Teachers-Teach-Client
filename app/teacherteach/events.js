@@ -7,16 +7,26 @@ store.$oldPwd = $('#oldPwd')
 store.$newPwd = $('#newPwd')
     //check if paasword and confirmation match
 const onPasswordInput = function() {
-        if (store.$confirmPassword.val() === store.$password.val()) {
-            store.isConfirmed = true
-            ui.passwordInputSuccess()
+    if (store.$confirmPassword.val() === store.$password.val()) {
+        store.isConfirmed = true
+        ui.passwordInputSuccess()
 
-        } else {
-            store.isConfirmed = false
-            ui.passwordInputFailure()
+    } else {
+        store.isConfirmed = false
+        ui.passwordInputFailure()
 
-        }
-        console.log(store.$password.val() + ': ' + store.$confirmPassword.val())
+    }
+    console.log(store.$password.val() + ': ' + store.$confirmPassword.val())
+}
+
+const signUpMdlOpn = function() {
+    store.$emailHelp.empty()
+    store.$passwordMessage.empty()
+    store.$password.css('border', '1px solid #dfe4e7')
+    store.$confirmPassword.css('border', '1px solid #dfe4e7')
+}
+const logInMdlOpn = function() {
+        store.$wrongPasswordMessage.empty()
     }
     //sign up
 const onSignUp = function(event) {
@@ -57,8 +67,8 @@ const onChangePwd = function(event) {
     const oldPwd = store.$oldPwd.val()
     const newPwd = store.$newPwd.val()
     api.changePwd(oldPwd, newPwd)
-        // .then(ui.onChangePwdSuccess)
-        // .catch(ui.onChangePwdFailure)
+        .then(ui.onChangePwdSuccess)
+        .catch(ui.onChangePwdFailure)
 }
 module.exports = {
     onSignUp,
@@ -66,5 +76,6 @@ module.exports = {
     onPasswordInput,
     onLogOut,
     onChangePwd,
-    signUpBtn
+    signUpMdlOpn,
+    logInMdlOpn
 }
