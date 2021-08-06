@@ -7,6 +7,7 @@ const changePwdModal = new Modal($('#changePwdModal'))
 
 store.$passwordMessage = $('#passwordMessage')
 store.$wrongPasswordMessage = $('#wrongPasswordMessage')
+store.$changePasswordMessage = $('#changePasswordMessage')
 store.$emailInput = $('#emailInput')
 store.$emailHelp = $('#emailHelp')
 store.$signUpBtn = $('#signUpBtn')
@@ -82,7 +83,7 @@ const onChangePwdSuccess = function() {
 }
 
 const onChangePwdFailure = function() {
-
+    store.$changePasswordMessage.html('Sorry, the password is incorrect').css('color', 'red')
 }
 module.exports = {
     onSignUpSuccess,
