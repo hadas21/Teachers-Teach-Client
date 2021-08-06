@@ -70,6 +70,18 @@ const onChangePwd = function(event) {
         .then(ui.onChangePwdSuccess)
         .catch(ui.onChangePwdFailure)
 }
+
+const onCreateLessonForm = function(event) {
+    //prevent page reload
+    event.preventDefault()
+
+    const form = event.target
+    const data = getFormFields(form)
+    console.log(data)
+    api.createLesson(data)
+        .then(ui.onCreateLessonSuccess)
+        .catch(ui.onCreateLessonFailure)
+}
 module.exports = {
     onSignUp,
     onLogIn,
@@ -77,5 +89,6 @@ module.exports = {
     onLogOut,
     onChangePwd,
     signUpMdlOpn,
-    logInMdlOpn
+    logInMdlOpn,
+    onCreateLessonForm
 }

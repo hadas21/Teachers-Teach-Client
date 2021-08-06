@@ -128,6 +128,64 @@
     </div>
 
 
+    <!-- CREATE LESSON -->
+    <button id="createLessonBtn" type="button" class="btn btn-primary rounded-circle" data-bs-toggle="modal" data-bs-target="#createLessonModal">
+      +
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="createLessonModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="createLessonForm">
+                        <div class="mb-3">
+                            <label for="newLessonTitle" class="form-label">Title</label>
+                            <input id="newLessonTitle" name="lesson[title]" type="text" class="form-control" aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-floating">
+                            <textarea name="lesson[description]" type="textarea" class="form-control" placeholder="Describe your lesson" id="floatingTextarea2" style="height: 100px"></textarea>
+                            <label for="floatingTextarea2">Description</label>
+                        </div>
+                        <div class="form-floating">
+                            <select name="lesson[subject]" type="text" class="form-select" aria-label="Floating label select example">
+                            <option selected>Select Subject</option>
+                            <option value="1">Geometry</option>
+                            <option value="2">History</option>
+                            <option value="3">Literature</option>
+                          </select>
+                            <label for="floatingSelect">Subject</label>
+                        </div>
+                        <div class="form">
+                            <select name="lesson[unit]" type="Number" class="form-select" aria-label="Floating label select example">
+                          <option selected>Unit Number</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="1">4</option>
+                          <option value="2">5</option>
+                          <option value="3">6</option>
+                          <option value="3">7</option>
+                        </select>
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="newLessonTitle" class="form-label">File Url</label>
+                            <input name="lesson[url]" type="text" class="form-control" aria-describedby="emailHelp">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-outline">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div><button type="button" class="btn btn-outline-primary rounded-circle">+</button></div>
+
 
 
 </body>

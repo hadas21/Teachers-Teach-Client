@@ -36,12 +36,19 @@ const changePwd = function(oldPwd, newPwd) {
         headers: {
             Authorization: 'Bearer ' + store.userToken
         },
-        data: {
-            passwords: {
-                old: oldPwd,
-                new: newPwd
-            }
-        }
+        data
+    })
+}
+
+const createLesson = function(data) {
+
+    return $.ajax({
+        method: 'POST',
+        url: config.apiUrl + '/lessons',
+        headers: {
+            Authorization: 'Bearer ' + store.userToken
+        },
+        data
     })
 }
 
@@ -49,5 +56,6 @@ module.exports = {
     signUp,
     logIn,
     logOut,
-    changePwd
+    changePwd,
+    createLesson
 }

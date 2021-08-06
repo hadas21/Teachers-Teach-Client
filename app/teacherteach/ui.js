@@ -57,12 +57,15 @@ const onSignUpFailure = function() {
 const onLogInSuccess = (response) => {
     //store token for futere validtion
     store.userToken = response.user.token
+    console.log(response)
+    store.userId = response.user._id
     store.$logInForm.trigger('reset')
     logInModal.hide()
     store.$signUpMdlBtn.hide()
     store.$logInMdlBtn.hide()
     store.$logOutBtn.show()
     store.$changePwdBtn.show()
+    store.$createLessonBtn.show()
 }
 
 const onLogInFailure = function() {
