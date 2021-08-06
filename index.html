@@ -21,11 +21,11 @@
 
 
     <!-- SIGN UP-->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sign-up-modal">
+    <button id="signUpMdlBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signUpModal">
  Sign Up
 </button>
     <!-- Modal -->
-    <div class="modal fade" id="sign-up-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="signUpModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -33,11 +33,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="sign-up-form">
+                    <form id="signUpForm">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input name="credentials[email]" placeholder="an@example.email" type="email" class="form-control" aria-describedby="emailHelp">
-                            <div id="emailHelp" class="form-text">Don't enter a real email or password! this website is not secure</div>
+                            <input id="emailInput" name="credentials[email]" placeholder="an@example.email" type="email" class="form-control" aria-describedby="emailHelp">
+                            <div class="form-text">
+                                <p id="emailHelp">Don't enter a real email or password! this website is not secure</p>
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
@@ -49,7 +51,7 @@
                             <input id="confirm-password" name="credentials[password_confirmation]" type="password" class="form-control">
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-outline">Sign Up</button>
+                            <button id="signUpBtn" type="submit" class="btn btn-outline">Sign Up</button>
                         </div>
                     </form>
                 </div>
@@ -58,11 +60,11 @@
     </div>
 
     <!-- LOG IN-->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#log-in-modal">
+    <button id="logInMdlBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logInModal">
       Log In
     </button>
     <!-- Modal -->
-    <div class="modal fade" id="log-in-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logInModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -70,7 +72,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="log-in-form">
+                    <form id="logInForm">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Email address</label>
                             <input name="credentials[email]" placeholder="an@example.email" type="email" class="form-control" aria-describedby="emailHelp">
@@ -88,6 +90,43 @@
             </div>
         </div>
     </div>
+
+    <!-- LOG OUT -->
+
+    <button id="logOutBtn" class="btn btn-primary">Log Out</button>
+
+    <!-- CHANGE PASSWORD -->
+    <button id="changePwdBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changePwdModal">
+      Change Password
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="changePwdModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="changePwdForm">
+                        <div class="mb-3">
+                            <label for="old-password" class="form-label">Old Password</label>
+                            <input id="oldPwd" name="credentials[old-password]" type="password" class="form-control" aria-describedby="emailHelp">
+                            <div id="changePasswordMessage" class="form-text"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="new-password" class="form-label">New Password</label>
+                            <input id="newPwd" name="credentials[new-password]" type="password" class="form-control">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-outline">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 

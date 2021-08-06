@@ -1,9 +1,17 @@
 const store = require('../store')
+const Modal = require('bootstrap').Modal
 
-store.$signUpModal = $('#sign-up-modal')
-store.$logInModal = $('#log-in-modal')
+const signUpModal = new Modal($('#signUpModal'))
+const logInModal = new Modal($('#logInModal'))
+
 store.$passwordMessage = $('#passwordMessage')
 store.$wrongPasswordMessage = $('#wrongPasswordMessage')
+store.$emailInput = $('#emailInput')
+store.$emailHelp = $('#emailHelp')
+store.$signUpBtn = $('#signUpBtn')
+store.$signUpMdlBtn = $('#signUpMdlBtn')
+store.$logInMdlBtn = $('#logInMdlBtn')
+
 
 const passwordInputSuccess = function() {
 
@@ -20,15 +28,27 @@ const passwordInputFailure = function() {
 
 const onSignUpSuccess = function() {
     store.$signUpForm.trigger('reset')
-    store.$signUpModal.hide()
+    signUpModal.hide()
+    store.$emailHelp.empty()
+    store.$passwordMessage.empty()
+    store.$password.css('border', '1px solid #dfe4e7')
+    store.$confirmPassword.css('border', '1px solid #dfe4e7')
 }
 const onSignUpFailure = function() {
-    store.$signUpForm.trigger('reset')
-    if (!store.isConfirmed) {
-        store.$passwordMessage.html('Please make sure the passwords match').css('color', 'red')
+    if (!store.$password.val()) {
+        store.$emailHelp.empty()
+        store.$passwordMessage.html('Please enter password').css('color', 'red')
+    } else if (!store.$emailInput.val()) {
+        store.$emailHelp.html('Please enter email').css('color', 'red')
+        store.$passwordMessage.empty()
+        store.$signUpForm.trigger('reset')
+    } else if (!store.isConfirmed) {
+        store.$passwordMessage.html('Please enter matching passwords').css('color', 'red')
         store.isConfirmed = true
+        store.$signUpForm.trigger('reset')
     } else {
-        $('#emailHelp').html("You'r already signed up, please log in").css('color', '#1a6efd')
+        store.$emailHelp.html("You'r already signed up, please log in").css('color', '#1a6efd')
+        store.$signUpForm.trigger('reset')
     }
 }
 
@@ -36,12 +56,24 @@ const onLogInSuccess = (response) => {
     //store token for futere validtion
     store.userToken = response.user.token
     store.$logInForm.trigger('reset')
-    store.$logInModal.hide()
+    logInModal.hide()
+    store.$signUpMdlBtn.hide()
+    store.$logInMdlBtn.hide()
+    store.$logOutBtn.show()
+    store.$changePwdBtn.show()
 }
 
 const onLogInFailure = function() {
     store.$logInForm.trigger('reset')
     store.$wrongPasswordMessage.html("Sorry, email and password don't match").css('color', 'red')
+}
+
+const onLogOutSuccess = () => {
+    store.$logOutBtn.hide()
+    store.$changePwdBtn.hide()
+    store.$signUpMdlBtn.show()
+    store.$logInMdlBtn.show()
+
 }
 
 module.exports = {
@@ -50,5 +82,6 @@ module.exports = {
     onLogInSuccess,
     onLogInFailure,
     passwordInputSuccess,
-    passwordInputFailure
+    passwordInputFailure,
+    onLogOutSuccess
 }

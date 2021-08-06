@@ -7,7 +7,7 @@
         "content": "CC­BY­NC­SA 4.0"
     },
     "dependencies": {
-        "bootstrap": "^5.0.1",
+        "bootstrap": "^5.1.0",
         "jquery": "^3.6.0",
         "popper.js": "^1.14.3"
     },

@@ -3,6 +3,8 @@ const getFormFields = require('../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
 const store = require('../store')
+store.$oldPwd = $('#oldPwd')
+store.$newPwd = $('#newPwd')
     //check if paasword and confirmation match
 const onPasswordInput = function() {
         if (store.$confirmPassword.val() === store.$password.val()) {
@@ -28,18 +30,41 @@ const onSignUp = function(event) {
         .then(ui.onSignUpSuccess)
         .catch(ui.onSignUpFailure)
 }
+
+
+//log in
 const onLogIn = function(event) {
+        event.preventDefault()
+
+        const form = event.target
+        const data = getFormFields(form)
+        api.logIn(data)
+            .then(ui.onLogInSuccess)
+            .catch(ui.onLogInFailure)
+    }
+    //log out
+const onLogOut = function() {
+        console.log('out')
+        api.logOut()
+            .then(ui.onLogOutSuccess)
+            .catch(ui.failure)
+    }
+    //change password
+const onChangePwd = function(event) {
     event.preventDefault()
+    console.log('change')
 
-    const form = event.target
-    const data = getFormFields(form)
-    api.logIn(data)
-        .then(ui.onLogInSuccess)
-        .catch(ui.onLogInFailure)
+    const oldPwd = store.$oldPwd.val()
+    const newPwd = store.$newPwd.val()
+    api.changePwd(oldPwd, newPwd)
+        // .then(ui.onChangePwdSuccess)
+        // .catch(ui.onChangePwdFailure)
 }
-
 module.exports = {
     onSignUp,
     onLogIn,
-    onPasswordInput
+    onPasswordInput,
+    onLogOut,
+    onChangePwd,
+    signUpBtn
 }
