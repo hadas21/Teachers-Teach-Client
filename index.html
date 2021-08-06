@@ -18,23 +18,79 @@
 
 
 
-    <form id="sign-up-form">
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input name="credentials[email]" placeholder="an@example.email" type="email" class="form-control" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">Don't enter a real email or password! this website is not secure</div>
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input name="credentials[password]" type="password" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password Confirmation</label>
-            <input name="credentials[password_confirmation]" type="password" class="form-control">
-        </div>
 
-        <button type="submit" class="btn btn-outline">Sign Up</button>
-    </form>
+
+    <!-- SIGN UP-->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sign-up-modal">
+ Sign Up
+</button>
+    <!-- Modal -->
+    <div class="modal fade" id="sign-up-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="sign-up-form">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input name="credentials[email]" placeholder="an@example.email" type="email" class="form-control" aria-describedby="emailHelp">
+                            <div id="emailHelp" class="form-text">Don't enter a real email or password! this website is not secure</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input id="password" name="credentials[password]" type="password" class="form-control">
+                            <div id="passwordMessage" class="form-text"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirm-password" class="form-label">Password Confirmation</label>
+                            <input id="confirm-password" name="credentials[password_confirmation]" type="password" class="form-control">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-outline">Sign Up</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOG IN-->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#log-in-modal">
+      Log In
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="log-in-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="log-in-form">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input name="credentials[email]" placeholder="an@example.email" type="email" class="form-control" aria-describedby="emailHelp">
+                            <div id="wrongPasswordMessage" class="form-text">Don't enter a real email or password! this website is not secure</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input name="credentials[password]" type="password" class="form-control">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-outline">Log In</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 </body>
 
 </html>
