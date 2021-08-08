@@ -4,6 +4,7 @@ const Modal = require('bootstrap').Modal
 const signUpModal = new Modal($('#signUpModal'))
 const logInModal = new Modal($('#logInModal'))
 const changePwdModal = new Modal($('#changePwdModal'))
+const createLessonModal = new Modal($('#createLessonModal'))
 
 store.$passwordMessage = $('#passwordMessage')
 store.$wrongPasswordMessage = $('#wrongPasswordMessage')
@@ -13,6 +14,7 @@ store.$emailHelp = $('#emailHelp')
 store.$signUpBtn = $('#signUpBtn')
 store.$signUpMdlBtn = $('#signUpMdlBtn')
 store.$logInMdlBtn = $('#logInMdlBtn')
+store.$myLessons = $('#myLessons')
 
 
 const passwordInputSuccess = function() {
@@ -66,6 +68,7 @@ const onLogInSuccess = (response) => {
     store.$logOutBtn.show()
     store.$changePwdBtn.show()
     store.$createLessonBtn.show()
+    store.$newLessons.show()
 }
 
 const onLogInFailure = function() {
@@ -88,6 +91,52 @@ const onChangePwdSuccess = function() {
 const onChangePwdFailure = function() {
     store.$changePasswordMessage.html('Sorry, the password is incorrect').css('color', 'red')
 }
+
+// const showNewLessons = (response) => {
+//     const newLessonsDiv = document.querySelector($('#newLessons'))
+//     const lessonElement = document.createElement('p')
+//     lessonElement.innerText = response.lesson.title
+//     newLessonsDiv.append(lessonElement)
+// }
+
+let lessonHtml = ''
+const addNewLesson = function(response) {
+    lessonHtml += `
+      <div>
+  <p>Title: ${response.lesson.title}</p>
+  <p>Subject: ${response.lesson.subject}</p>
+   <p>Description: ${response.lesson.description}</p>
+   <p>Unit: ${response.lesson.unit}</p>
+   <p>Url: ${response.lesson.url}</p>
+   </div>
+  `
+    store.$myLessons.prepend(lessonHtml)
+}
+
+const onCreateLessonSuccess = function(response) {
+    createLessonModal.hide()
+    console.log(response)
+    addNewLesson(response)
+
+}
+
+const showMyLessonsSuccess = function(response) {
+    console.log(response)
+    let lessonsHtml = ''
+    response.lessons.forEach(lessons => {
+        lessonsHtml += `
+        <div>
+    <p>Title: ${lessons.title}</p>
+    <p>Subject: ${lessons.subject}</p>
+     <p>Description: ${lessons.description}</p>
+     <p>Unit: ${lessons.unit}</p>
+     <p>Url: ${lessons.url}</p>
+     </div>
+    `
+    })
+    store.$myLessons.html(lessonsHtml)
+}
+
 module.exports = {
     onSignUpSuccess,
     onSignUpFailure,
@@ -97,5 +146,8 @@ module.exports = {
     passwordInputFailure,
     onLogOutSuccess,
     onChangePwdSuccess,
-    onChangePwdFailure
+    onChangePwdFailure,
+    showMyLessonsSuccess,
+    onCreateLessonSuccess
+
 }

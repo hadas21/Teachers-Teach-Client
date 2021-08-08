@@ -15,11 +15,14 @@ store.$changePwdBtn = $('#changePwdBtn')
 store.$signUpBtn = $('#signUpBtn')
 store.$createLessonBtn = $('#createLessonBtn')
 store.$createLessonForm = $('#createLessonForm')
+store.$newLessons = $('#newClasses')
+store.$myLessonsBtn = $('#myLessonsBtn')
 $(() => {
 
     store.$logOutBtn.hide()
     store.$changePwdBtn.hide()
     store.$createLessonBtn.hide()
+    store.$newLessons.hide()
 
     store.$confirmPassword.on('keyup', eventsTeach.onPasswordInput)
     store.$password.on('keyup', eventsTeach.onPasswordInput)
@@ -32,6 +35,7 @@ $(() => {
     store.$signUpMdlBtn.on('click', eventsTeach.signUpMdlOpn)
     store.$logInMdlBtn.on('click', eventsTeach.logInMdlOpn)
 
+    store.$myLessonsBtn.on('click', eventsTeach.onMyLessonsBtn)
     store.$createLessonForm.on('submit', eventsTeach.onCreateLessonForm)
 
 })

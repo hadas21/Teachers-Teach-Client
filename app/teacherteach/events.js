@@ -5,7 +5,7 @@ const ui = require('./ui')
 const store = require('../store')
 store.$oldPwd = $('#oldPwd')
 store.$newPwd = $('#newPwd')
-    //check if paasword and confirmation match
+    //check if password and confirmation match
 const onPasswordInput = function() {
     if (store.$confirmPassword.val() === store.$password.val()) {
         store.isConfirmed = true
@@ -79,8 +79,15 @@ const onCreateLessonForm = function(event) {
     const data = getFormFields(form)
     console.log(data)
     api.createLesson(data)
-        .then(ui.onCreateLessonSuccess)
-        .catch(ui.onCreateLessonFailure)
+
+    .then(ui.onCreateLessonSuccess)
+        //     .catch(ui.onCreateLessonFailure)
+}
+
+const onMyLessonsBtn = function() {
+    api.showMyLessons()
+        .then(ui.showMyLessonsSuccess)
+        //.then(ui.showMyLessonsFailure)
 }
 module.exports = {
     onSignUp,
@@ -90,5 +97,6 @@ module.exports = {
     onChangePwd,
     signUpMdlOpn,
     logInMdlOpn,
-    onCreateLessonForm
+    onCreateLessonForm,
+    onMyLessonsBtn
 }

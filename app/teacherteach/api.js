@@ -52,10 +52,20 @@ const createLesson = function(data) {
     })
 }
 
+const showMyLessons = function() {
+    return $.ajax({
+        method: 'GET',
+        url: config.apiUrl + '/lessons',
+        headers: {
+            Authorization: 'Bearer ' + store.userToken
+        }
+    })
+}
 module.exports = {
     signUp,
     logIn,
     logOut,
     changePwd,
-    createLesson
+    createLesson,
+    showMyLessons
 }
