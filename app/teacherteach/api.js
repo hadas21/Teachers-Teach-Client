@@ -29,7 +29,7 @@ const logOut = function() {
     })
 }
 
-const changePwd = function(oldPwd, newPwd) {
+const changePwd = function(data) {
     return $.ajax({
         method: 'PATCH',
         url: config.apiUrl + '/change-password/',
@@ -61,11 +61,31 @@ const showMyLessons = function() {
         }
     })
 }
+
+const editLesson = function(data, lessonId) {
+    return $.ajax({
+        method: 'PATCH',
+        url: config.apiUrl + '/lessons/' + lessonId,
+        headers: {
+            Authorization: 'Bearer ' + store.userToken
+        },
+        data
+    })
+}
+
+const showAllLessons = function() {
+    return $.ajax({
+        method: 'GET',
+        url: config.apiUrl + '/all'
+    })
+}
 module.exports = {
     signUp,
     logIn,
     logOut,
     changePwd,
     createLesson,
-    showMyLessons
+    showMyLessons,
+    editLesson,
+    showAllLessons
 }

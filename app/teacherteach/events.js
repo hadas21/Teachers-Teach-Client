@@ -3,6 +3,7 @@ const getFormFields = require('../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
 const store = require('../store')
+const { css } = require('jquery')
 store.$oldPwd = $('#oldPwd')
 store.$newPwd = $('#newPwd')
     //check if password and confirmation match
@@ -19,6 +20,7 @@ const onPasswordInput = function() {
     console.log(store.$password.val() + ': ' + store.$confirmPassword.val())
 }
 
+//open empty modals
 const signUpMdlOpn = function() {
     store.$emailHelp.empty()
     store.$passwordMessage.empty()
@@ -26,9 +28,10 @@ const signUpMdlOpn = function() {
     store.$confirmPassword.css('border', '1px solid #dfe4e7')
 }
 const logInMdlOpn = function() {
-        store.$wrongPasswordMessage.empty()
-    }
-    //sign up
+    store.$wrongPasswordMessage.empty()
+}
+
+//sign up
 const onSignUp = function(event) {
     //prevent page reload
     event.preventDefault()
@@ -64,9 +67,11 @@ const onChangePwd = function(event) {
     event.preventDefault()
     console.log('change')
 
-    const oldPwd = store.$oldPwd.val()
-    const newPwd = store.$newPwd.val()
-    api.changePwd(oldPwd, newPwd)
+    // const oldPwd = store.$oldPwd.val()
+    // const newPwd = store.$newPwd.val()
+    const form = event.target
+    const data = getFormFields(form)
+    api.changePwd(data)
         .then(ui.onChangePwdSuccess)
         .catch(ui.onChangePwdFailure)
 }
@@ -77,17 +82,48 @@ const onCreateLessonForm = function(event) {
 
     const form = event.target
     const data = getFormFields(form)
-    console.log(data)
+
     api.createLesson(data)
 
     .then(ui.onCreateLessonSuccess)
-        //     .catch(ui.onCreateLessonFailure)
+        .catch(ui.onCreateLessonFailure)
 }
+
+// const onCreateLessonType = function() {
+//     if (!store.$createLessonField) {
+//         ui.onCreateLessonTypeFailure
+//     }
+// }
 
 const onMyLessonsBtn = function() {
     api.showMyLessons()
         .then(ui.showMyLessonsSuccess)
-        //.then(ui.showMyLessonsFailure)
+        .then(ui.showMyLessonsFailure)
+}
+
+const onEditLesson = function(event) {
+    event.preventDefault()
+    console.log(event)
+    const form = event.target
+    const data = getFormFields(form)
+    console.log(store.lessonId)
+        //$('.card-body').attr('contenteditable' = 'true')
+    api.editLesson(data, store.lessonId)
+        .then(ui.editLessonSuccess)
+        .then(ui.editLessonFailure)
+}
+
+const onShowAllLessons = function() {
+    console.log('show')
+    api.showAllLessons()
+        .then(ui.onShowAllLessonsSuccess)
+        //.catch(ui.onShowAllLessonsFailure)
+}
+
+const getLessonId = function(event) {
+    console.log($(event.target).data('id'))
+    store.lessonId = $(event.target).data('id')
+    console.log(store.lessonId)
 }
 module.exports = {
     onSignUp,
@@ -98,5 +134,9 @@ module.exports = {
     signUpMdlOpn,
     logInMdlOpn,
     onCreateLessonForm,
-    onMyLessonsBtn
+    onMyLessonsBtn,
+    onEditLesson,
+    onShowAllLessons,
+    getLessonId
+    //onCreateLessonType
 }

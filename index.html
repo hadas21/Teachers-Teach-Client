@@ -75,12 +75,12 @@
                     <form id="logInForm">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input name="credentials[email]" placeholder="an@example.email" type="email" class="form-control" aria-describedby="emailHelp">
+                            <input value="ss@ss.ss" name="credentials[email]" placeholder="an@example.email" type="email" class="form-control" aria-describedby="emailHelp">
                             <div id="wrongPasswordMessage" class="form-text">Don't enter a real email or password! this website is not secure</div>
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input name="credentials[password]" type="password" class="form-control">
+                            <input value="ss" name="credentials[password]" type="password" class="form-control">
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-outline">Log In</button>
@@ -111,12 +111,12 @@
                     <form id="changePwdForm">
                         <div class="mb-3">
                             <label for="old-password" class="form-label">Old Password</label>
-                            <input id="oldPwd" name="credentials[old-password]" type="password" class="form-control" aria-describedby="emailHelp">
+                            <input id="oldPwd" name="passwords[old]" type="password" class="form-control" aria-describedby="emailHelp">
                             <div id="changePasswordMessage" class="form-text"></div>
                         </div>
                         <div class="mb-3">
                             <label for="new-password" class="form-label">New Password</label>
-                            <input id="newPwd" name="credentials[new-password]" type="password" class="form-control">
+                            <input id="newPwd" name="passwords[new]" type="password" class="form-control">
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-outline">Save</button>
@@ -141,26 +141,29 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="createLessonForm">
+                    <form id="createLessonForm" class="needs-validation">
                         <div class="mb-3">
                             <label for="newLessonTitle" class="form-label">Title</label>
-                            <input id="newLessonTitle" name="lesson[title]" type="text" class="form-control" aria-describedby="emailHelp">
+                            <input id="newLessonTitle" name="lesson[title]" type="text" class="form-control create-lesson-field" aria-describedby="emailHelp">
+                            <div class="form-text create-lesson-message"></div>
                         </div>
                         <div class="form-floating">
-                            <textarea name="lesson[description]" type="textarea" class="form-control" placeholder="Describe your lesson" id="floatingTextarea2" style="height: 100px"></textarea>
+                            <textarea name="lesson[description]" type="textarea" class="form-control create-lesson-field" placeholder="Describe your lesson" id="floatingTextarea2" style="height: 100px"></textarea>
                             <label for="floatingTextarea2">Description</label>
+                            <div class="form-text create-lesson-message"></div>
                         </div>
                         <div class="form-floating">
-                            <select name="lesson[subject]" type="text" class="form-select" aria-label="Floating label select example">
+                            <select name="lesson[subject]" type="text" class="form-select create-lesson-field" aria-label="Floating label select example">
                             <option selected>Select Subject</option>
                             <option value="Geometry">Geometry</option>
                             <option value="History">History</option>
                             <option value="Literature">Literature</option>
                           </select>
                             <label for="floatingSelect">Subject</label>
+                            <div class="form-text create-lesson-message"></div>
                         </div>
                         <div class="form">
-                            <select name="lesson[unit]" type="Number" class="form-select" aria-label="Floating label select example">
+                            <select name="lesson[unit]" type="Number" class="form-select create-lesson-field" aria-label="Floating label select example">
                           <option selected>Unit Number</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
@@ -170,11 +173,71 @@
                           <option value="3">6</option>
                           <option value="3">7</option>
                         </select>
-
+                            <div class="form-text create-lesson-message"></div>
                         </div>
                         <div class="mb-3">
                             <label for="newLessonTitle" class="form-label">File Url</label>
-                            <input name="lesson[url]" type="text" class="form-control" aria-describedby="emailHelp">
+                            <input name="lesson[url]" type="text" class="form-control create-lesson-field" aria-describedby="emailHelp">
+                            <div class="form-text create-lesson-message"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="form-text create-lesson-error-message"></div>
+                            <button type="submit" class="btn btn-outline">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- EDIT LESSON-->
+
+    <!-- Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm">
+                        <div class="mb-3">
+                            <label for="newLessonTitle" class="form-label">Title</label>
+                            <input name="lesson[title]" type="text" class="form-control create-lesson-field" aria-describedby="emailHelp">
+                            <div class="form-text create-lesson-message"></div>
+                        </div>
+                        <div class="form-floating">
+                            <textarea name="lesson[description]" type="textarea" class="form-control create-lesson-field" placeholder="Describe your lesson" style="height: 100px"></textarea>
+                            <label for="floatingTextarea2">Description</label>
+                            <div class="form-text create-lesson-message"></div>
+                        </div>
+                        <div class="form-floating">
+                            <select name="lesson[subject]" type="text" class="form-select create-lesson-field" aria-label="Floating label select example">
+                        <option selected>Select Subject</option>
+                        <option value="Geometry">Geometry</option>
+                        <option value="History">History</option>
+                        <option value="Literature">Literature</option>
+                      </select>
+                            <label for="floatingSelect">Subject</label>
+                            <div class="form-text create-lesson-message"></div>
+                        </div>
+                        <div class="form">
+                            <select name="lesson[unit]" type="Number" class="form-select create-lesson-field" aria-label="Floating label select example">
+                      <option selected>Unit Number</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="1">4</option>
+                      <option value="2">5</option>
+                      <option value="3">6</option>
+                      <option value="3">7</option>
+                    </select>
+                            <div class="form-text create-lesson-message"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newLessonTitle" class="form-label">File Url</label>
+                            <input name="lesson[url]" type="text" class="form-control create-lesson-field" aria-describedby="emailHelp">
+                            <div class="form-text create-lesson-message"></div>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-outline">Save</button>
@@ -184,16 +247,19 @@
             </div>
         </div>
     </div>
+
     <!-- WELCOME -->
 
-    <section id="newLessons">
+    <section id="allLessons" class="row">
 
     </section>
     <section id="myLessons" class="row">
-        <button id="myLessonsBtn" type="button" class="btn btn-outline">Display My Lessons</button>
+        <div> <button id="myLessonsBtn" type="button" class="btn btn-primary">Display My Lessons</button>
+            <div id="message" class="form-text"></div>
+        </div>
+
 
     </section>
-
 </body>
 
 </html>
