@@ -125,17 +125,32 @@ const showMyLessonsSuccess = function(response) {
     let lessonsHtml = ''
     response.lessons.forEach(lessons => {
         lessonsHtml += `
-        <div>
-    <p>Title: ${lessons.title}</p>
-    <p>Subject: ${lessons.subject}</p>
-     <p>Description: ${lessons.description}</p>
-     <p>Unit: ${lessons.unit}</p>
-     <p>Url: ${lessons.url}</p>
-     </div>
+        <div class="card col-4">
+        <img src="https://image.shutterstock.com/image-photo/lesson-1-white-chalk-text-260nw-535576588.jpg" class="card-img-top" alt="...">
+
+        <div class="card-body">
+          <h5 class="card-title">${lessons.title}</h5>
+          <p class="card-subtitle mb-2 text-muted">Subject: ${lessons.subject}</p>
+          <p class="card-text">Description: ${lessons.description}</p>
+          <p class="card-text">Unit: ${lessons.unit}</p>
+          <a href="${lessons.url}" class="btn btn-primary">Open lesson</a>
+          <button id="deleteLesson" class="btn">Delete</button>
+          <button id="editLesson" class="btn">Edit</button>
+        </div>
+      </div>
     `
     })
     store.$myLessons.html(lessonsHtml)
 }
+
+// ``
+// <div>
+// <p>Title: ${lessons.title}</p>
+// <p>Subject: ${lessons.subject}</p>
+//  <p>Description: ${lessons.description}</p>
+//  <p>Unit: ${lessons.unit}</p>
+//  <p>Url: ${lessons.url}</p>
+//  </div>
 
 module.exports = {
     onSignUpSuccess,
