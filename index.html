@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <header id="header">
+    <header>
         <h1>Welcome</h1>
         <!-- SIGN UP-->
         <button id="signUpMdlBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signUpModal">
@@ -39,8 +39,8 @@
         <p id="welcomeMessage"></p>
     </header>
     <nav>
-        <button id="myLessonsBtn" type="button" class="btn btn-primary">Display My Lessons</button>
-        <p id="myLessonsMessage" class="form-text"></p>
+        <button type="button" class="btn btn-primary myLessonsBtn">Display My Lessons</button>
+        <p class="form-text myLessonsMessage"></p>
     </nav>
 
 
@@ -297,6 +297,10 @@
 
     </section>
     <section id="myLessons" class="row">
+        <div>
+            <button type="button" class="btn btn-primary myLessonsBtn">Display My Lessons</button>
+            <p class="form-text myLessonsMessage"></p>
+        </div>
         <div>
             <h4 id="showMyLessons">My Lessons</h4>
 

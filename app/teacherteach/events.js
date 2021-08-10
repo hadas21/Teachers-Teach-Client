@@ -65,6 +65,7 @@ const onLogOut = function() {
     //change password
 const onChangePwd = function(event) {
     event.preventDefault()
+
     const form = event.target
     const data = getFormFields(form)
     api.changePwd(data)
@@ -72,7 +73,7 @@ const onChangePwd = function(event) {
         .catch(ui.onChangePwdFailure)
 }
 
-const onCreateLessonForm = function(event) {
+const onCreateLesson = function(event) {
     //prevent page reload
     event.preventDefault()
 
@@ -80,13 +81,11 @@ const onCreateLessonForm = function(event) {
     const data = getFormFields(form)
 
     api.createLesson(data)
-
-    .then(ui.onCreateLessonSuccess)
-        .catch(ui.onCreateLessonFailure)
+        .then(ui.onCreateLessonSuccess)
+        .catch(ui.failure)
 }
 
 const onMyLessonsBtn = function() {
-
     api.showMyLessons()
         .then(ui.showMyLessonsSuccess)
         .catch(ui.showMyLessonsFailure)
@@ -94,11 +93,9 @@ const onMyLessonsBtn = function() {
 
 const onEditLesson = function(event) {
     event.preventDefault()
-    console.log(event)
+
     const form = event.target
     const data = getFormFields(form)
-    console.log(store.lessonId)
-        //$('.card-body').attr('contenteditable' = 'true')
     api.editLesson(data, store.lessonId)
         .then(ui.onEditLessonSuccess)
         .then(ui.onEditLessonFailure)
@@ -130,7 +127,7 @@ module.exports = {
     onPasswordInput,
     onLogOut,
     onChangePwd,
-    onCreateLessonForm,
+    onCreateLesson,
     onMyLessonsBtn,
     onEditLesson,
     onShowAllLessons,

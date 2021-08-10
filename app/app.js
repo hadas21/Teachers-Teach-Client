@@ -25,7 +25,6 @@ $(() => {
     store.$editForm = $('#editForm')
     store.$allLessons = $('#allLessons')
     store.$myLessons = $('#myLessons')
-    store.$myLessonsBtn = $('#myLessonsBtn')
     store.$emailInput = $('#emailInput')
     store.$emailHelp = $('#emailHelp')
     store.$signUpMdlBtn = $('#signUpMdlBtn')
@@ -33,22 +32,29 @@ $(() => {
     store.$welcomeMessage = $('#welcomeMessage')
     store.$wrongPasswordMessage = $('#wrongPasswordMessage')
     store.$changePasswordMessage = $('#changePasswordMessage')
-    store.$myLessonsMessage = $('#myLessonsMessage')
     store.$passwordMessage = $('#passwordMessage')
         //classes
     store.$formControl = $('.form-control')
     store.$createLessonMessage = $('.create-lesson-message')
     store.$createLessonErrorMessage = $('.create-lesson-error-message')
+    store.$myLessonsMessage = $('.myLessonsMessage')
+    store.$myLessonsBtn = $('.myLessonsBtn')
         //elements
     store.$form = $('form')
-        //hide elements to show only after log in
+    store.$header = $('header')
+    store.$body = $('html,body')
+
+    //hide elements to show only after log in
     store.$logOutMdlBtn.hide()
     store.$changePwdBtn.hide()
     store.$createLessonBtn.hide()
+
+    // display top of page on load
+    scroll(store.$header)
         //display all users lessons on load
     eventsTeach.onShowAllLessons()
 
-    // document.getElementById('header').scrollIntoView(true)--------not working
+
     //password and confirmation match validation
     store.$confirmPassword.on('keyup', eventsTeach.onPasswordInput)
     store.$password.on('keyup', eventsTeach.onPasswordInput)
@@ -56,15 +62,15 @@ $(() => {
         // store.$signUpMdlBtn.on('click', eventsTeach.signUpMdlOpn)
         // store.$logInMdlBtn.on('click', eventsTeach.logInMdlOpn)
 
+    //user events
     store.$signUpForm.on('submit', eventsTeach.onSignUp)
     store.$logInForm.on('submit', eventsTeach.onLogIn)
     store.$changePwdForm.on('submit', eventsTeach.onChangePwd)
     store.$logOutBtn.on('click', eventsTeach.onLogOut)
 
+    //lesson event
     store.$myLessonsBtn.on('click', eventsTeach.onMyLessonsBtn)
-    store.$createLessonForm.on('submit', eventsTeach.onCreateLessonForm)
-        // store.$createLessonField.on('keyup', eventsTeach.onCreateLessonType)
-
+    store.$createLessonForm.on('submit', eventsTeach.onCreateLesson)
     store.$myLessons.on('click', '.card', eventsTeach.getLessonId)
     store.$editForm.on('submit', eventsTeach.onEditLesson)
     store.$myLessons.on('click', '#deleteLesson', eventsTeach.onDeleteLesson)
