@@ -3,10 +3,21 @@ const getFormFields = require('../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
 const store = require('../store')
-const { css } = require('jquery')
-store.$oldPwd = $('#oldPwd')
-store.$newPwd = $('#newPwd')
-    //check if password and confirmation match
+
+
+
+//open empty modals------------------- maybe unneccasery?
+// const signUpMdlOpn = function() {
+//     store.$emailHelp.empty()
+//     store.$passwordMessage.empty()
+//     store.$password.css('border', '1px solid #dfe4e7')
+//     store.$confirmPassword.css('border', '1px solid #dfe4e7')
+// }
+// const logInMdlOpn = function() {
+//     store.$wrongPasswordMessage.empty()
+// }
+
+//check if password and confirmation match
 const onPasswordInput = function() {
     if (store.$confirmPassword.val() === store.$password.val()) {
         store.isConfirmed = true
@@ -20,25 +31,14 @@ const onPasswordInput = function() {
     console.log(store.$password.val() + ': ' + store.$confirmPassword.val())
 }
 
-//open empty modals
-const signUpMdlOpn = function() {
-    store.$emailHelp.empty()
-    store.$passwordMessage.empty()
-    store.$password.css('border', '1px solid #dfe4e7')
-    store.$confirmPassword.css('border', '1px solid #dfe4e7')
-}
-const logInMdlOpn = function() {
-    store.$wrongPasswordMessage.empty()
-}
-
 //sign up
 const onSignUp = function(event) {
     //prevent page reload
     event.preventDefault()
-
+        //get form data
     const form = event.target
     const data = getFormFields(form)
-
+        //send api req
     api.signUp(data)
         .then(ui.onSignUpSuccess)
         .catch(ui.onSignUpFailure)
@@ -57,7 +57,7 @@ const onLogIn = function(event) {
     }
     //log out
 const onLogOut = function() {
-        console.log('out')
+
         api.logOut()
             .then(ui.onLogOutSuccess)
             .catch(ui.failure)
@@ -65,10 +65,6 @@ const onLogOut = function() {
     //change password
 const onChangePwd = function(event) {
     event.preventDefault()
-    console.log('change')
-
-    // const oldPwd = store.$oldPwd.val()
-    // const newPwd = store.$newPwd.val()
     const form = event.target
     const data = getFormFields(form)
     api.changePwd(data)
@@ -89,13 +85,8 @@ const onCreateLessonForm = function(event) {
         .catch(ui.onCreateLessonFailure)
 }
 
-// const onCreateLessonType = function() {
-//     if (!store.$createLessonField) {
-//         ui.onCreateLessonTypeFailure
-//     }
-// }
-
 const onMyLessonsBtn = function() {
+
     api.showMyLessons()
         .then(ui.showMyLessonsSuccess)
         .catch(ui.showMyLessonsFailure)
@@ -139,8 +130,6 @@ module.exports = {
     onPasswordInput,
     onLogOut,
     onChangePwd,
-    signUpMdlOpn,
-    logInMdlOpn,
     onCreateLessonForm,
     onMyLessonsBtn,
     onEditLesson,
@@ -148,4 +137,6 @@ module.exports = {
     getLessonId,
     onDeleteLesson
     //onCreateLessonType
+    // signUpMdlOpn,
+    // logInMdlOpn,
 }

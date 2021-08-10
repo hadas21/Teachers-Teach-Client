@@ -7,46 +7,59 @@ const store = require('./store')
 const eventsTeach = require('../app/teacherteach/events')
 
 $(() => {
-
+    //cashed variables
+    //id's
     store.$confirmPassword = $('#confirm-password')
     store.$password = $('#password')
     store.$signUpForm = $('#signUpForm')
     store.$logInForm = $('#logInForm')
     store.$logOutBtn = $('#logOutBtn')
+    store.$logOutMdlBtn = $('#logOutMdlBtn')
     store.$changePwdForm = $('#changePwdForm')
+    store.$oldPwd = $('#oldPwd')
+    store.$newPwd = $('#newPwd')
     store.$changePwdBtn = $('#changePwdBtn')
-    store.$signUpBtn = $('#signUpBtn')
     store.$createLessonBtn = $('#createLessonBtn')
     store.$createLessonForm = $('#createLessonForm')
-    store.$newLessons = $('#newClasses')
-    store.$myLessonsBtn = $('#myLessonsBtn')
     store.$createLessonField = $('.create-lesson-field')
     store.$editForm = $('#editForm')
-    store.$deleteLesson = $('#deleteLesson')
     store.$allLessons = $('#allLessons')
     store.$myLessons = $('#myLessons')
-    store.$editMdlBtn = $('#editMdlBtn')
+    store.$myLessonsBtn = $('#myLessonsBtn')
+    store.$emailInput = $('#emailInput')
+    store.$emailHelp = $('#emailHelp')
+    store.$signUpMdlBtn = $('#signUpMdlBtn')
+    store.$logInMdlBtn = $('#logInMdlBtn')
+    store.$welcomeMessage = $('#welcomeMessage')
+    store.$wrongPasswordMessage = $('#wrongPasswordMessage')
+    store.$changePasswordMessage = $('#changePasswordMessage')
     store.$myLessonsMessage = $('#myLessonsMessage')
-    store.$deleteLesson = $('#deleteLesson')
-
-    store.$logOutBtn.hide()
+    store.$passwordMessage = $('#passwordMessage')
+        //classes
+    store.$formControl = $('.form-control')
+    store.$createLessonMessage = $('.create-lesson-message')
+    store.$createLessonErrorMessage = $('.create-lesson-error-message')
+        //elements
+    store.$form = $('form')
+        //hide elements to show only after log in
+    store.$logOutMdlBtn.hide()
     store.$changePwdBtn.hide()
     store.$createLessonBtn.hide()
-    store.$newLessons.hide()
-
+        //display all users lessons on load
     eventsTeach.onShowAllLessons()
 
+    // document.getElementById('header').scrollIntoView(true)--------not working
+    //password and confirmation match validation
     store.$confirmPassword.on('keyup', eventsTeach.onPasswordInput)
     store.$password.on('keyup', eventsTeach.onPasswordInput)
+        //reset modal when open to show user empty forms------------------- maybe unneccasery?
+        // store.$signUpMdlBtn.on('click', eventsTeach.signUpMdlOpn)
+        // store.$logInMdlBtn.on('click', eventsTeach.logInMdlOpn)
 
     store.$signUpForm.on('submit', eventsTeach.onSignUp)
     store.$logInForm.on('submit', eventsTeach.onLogIn)
-
-    store.$logOutBtn.on('click', eventsTeach.onLogOut)
     store.$changePwdForm.on('submit', eventsTeach.onChangePwd)
-    store.$signUpMdlBtn.on('click', eventsTeach.signUpMdlOpn)
-    store.$logInMdlBtn.on('click', eventsTeach.logInMdlOpn)
-
+    store.$logOutBtn.on('click', eventsTeach.onLogOut)
 
     store.$myLessonsBtn.on('click', eventsTeach.onMyLessonsBtn)
     store.$createLessonForm.on('submit', eventsTeach.onCreateLessonForm)

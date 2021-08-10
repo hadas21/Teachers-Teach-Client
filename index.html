@@ -14,10 +14,8 @@
 </head>
 
 <body>
-    <h1>Welcome</h1>
-
-
-    <header>
+    <header id="header">
+        <h1>Welcome</h1>
         <!-- SIGN UP-->
         <button id="signUpMdlBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signUpModal">
   Sign Up
@@ -27,8 +25,9 @@
   Log In
 </button>
         <!-- LOG OUT -->
-
-        <button id="logOutBtn" class="btn btn-primary">Log Out</button>
+        <button id="logOutMdlBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logOutModal">
+      Log Out
+    </button>
         <!-- CHANGE PASSWORD -->
         <button id="changePwdBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changePwdModal">
   Change Password
@@ -39,7 +38,10 @@
 </button>
         <p id="welcomeMessage"></p>
     </header>
-
+    <nav>
+        <button id="myLessonsBtn" type="button" class="btn btn-primary">Display My Lessons</button>
+        <p id="myLessonsMessage" class="form-text"></p>
+    </nav>
 
 
     <!--SIGN UP Modal -->
@@ -108,6 +110,24 @@
 
 
 
+    <!--LOG OUT Modal -->
+    <div class="modal fade" id="logOutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logOutMdl">Log Out</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to log out?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nope</button>
+                    <button id="logOutBtn" type="button" class="btn btn-primary">I'm sure</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!--CHANGE PASSWORD Modal -->
     <div class="modal fade" id="changePwdModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -254,15 +274,32 @@
             </div>
         </div>
     </div>
-
+    <!--FAILURE Modal -->
+    <div class="modal fade" id="failureModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sorry</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Something went wrong... Please try again later
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Got It</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- WELCOME -->
 
     <section id="allLessons" class="row col-md-10 m-auto">
 
     </section>
     <section id="myLessons" class="row">
-        <div> <button id="myLessonsBtn" type="button" class="btn btn-primary">Display My Lessons</button>
-            <p id="myLessonsMessage" class="form-text"></p>
+        <div>
+            <h4 id="showMyLessons">My Lessons</h4>
+
         </div>
 
 

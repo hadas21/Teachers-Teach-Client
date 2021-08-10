@@ -3,25 +3,14 @@ const Modal = require('bootstrap').Modal
 
 const signUpModal = new Modal($('#signUpModal'))
 const logInModal = new Modal($('#logInModal'))
+const logOutModal = new Modal($('#logOutModal'))
 const changePwdModal = new Modal($('#changePwdModal'))
 const createLessonModal = new Modal($('#createLessonModal'))
 const editModal = new Modal($('#editModal'))
+const failureModal = new Modal($('#failureModal'))
 
-store.$passwordMessage = $('#passwordMessage')
-store.$wrongPasswordMessage = $('#wrongPasswordMessage')
-store.$changePasswordMessage = $('#changePasswordMessage')
-store.$emailInput = $('#emailInput')
-store.$emailHelp = $('#emailHelp')
-store.$signUpBtn = $('#signUpBtn')
-store.$signUpMdlBtn = $('#signUpMdlBtn')
-store.$logInMdlBtn = $('#logInMdlBtn')
-store.$form = $('form')
-store.$formControl = $('.form-control')
-store.$welcomeMessage = $('#welcomeMessage')
 
-store.$createLessonMessage = $('.create-lesson-message')
-store.$createLessonErrorMessage = $('.create-lesson-error-message')
-    //form validation
+//form validation
 const passwordInputSuccess = function() {
 
     store.$password.css('border', '1px solid green')
@@ -35,12 +24,8 @@ const passwordInputFailure = function() {
 
 }
 
-// const onCreateLessonTypeFailure = function() {
-//         store.$createLessonField.css('border', '1px solid red')
-//     }
-//user CRUD
+//sign up
 const onSignUpSuccess = function(response) {
-
     store.$signUpForm.trigger('reset')
     signUpModal.hide()
     store.$emailHelp.empty()
@@ -50,9 +35,7 @@ const onSignUpSuccess = function(response) {
     store.$confirmPassword.css('border', '1px solid #dfe4e7')
 }
 const onSignUpFailure = function() {
-    // if (!store.$formControl.val()) {
-    //     store.$emailHelp.html("Please enter valid input").css('color', 'red')
-    // } else
+    //give user feedback
     if (!store.$password.val()) {
         store.$emailHelp.empty()
         store.$passwordMessage.html('Please enter password').css('color', 'red')
@@ -75,31 +58,34 @@ const onSignUpFailure = function() {
 const onLogInSuccess = (response) => {
     //store token for futere validtion
     store.userToken = response.user.token
-    console.log(response)
-    store.userId = response.user._id
+        //give user feedback
     store.$logInForm.trigger('reset')
     logInModal.hide()
     store.$signUpMdlBtn.hide()
     store.$logInMdlBtn.hide()
-    store.$logOutBtn.show()
+    store.$logOutMdlBtn.show()
     store.$changePwdBtn.show()
     store.$createLessonBtn.show()
-    store.$newLessons.show()
     store.$myLessonsMessage.empty()
     store.$welcomeMessage.html(`Hello, ${response.user.email}`)
 }
 
 const onLogInFailure = function() {
     store.$logInForm.trigger('reset')
+        //give user feedback
     store.$wrongPasswordMessage.html("Sorry, email and password don't match").css('color', 'red')
 }
 
 const onLogOutSuccess = () => {
-    store.$logOutBtn.hide()
+    logOutModal.hide()
+    store.$logOutMdlBtn.hide()
     store.$changePwdBtn.hide()
     store.$signUpMdlBtn.show()
     store.$logInMdlBtn.show()
     store.$form.trigger('reset')
+    store.$welcomeMessage.empty()
+    store.$createLessonBtn.hide()
+
 }
 
 const onChangePwdSuccess = function() {
@@ -154,7 +140,9 @@ const onCreateLessonFailure = function() {
 }
 
 const showMyLessonsSuccess = function(response) {
-    //console.log(response)
+    //scroll down to display my lessons
+    document.getElementById('myLessons').scrollIntoView()
+
     let lessonsHtml = ''
     response.lessons.forEach(lessons => {
 
@@ -177,7 +165,8 @@ const showMyLessonsSuccess = function(response) {
       </div>
     `
     })
-    store.$myLessons.html(lessonsHtml)
+    store.$myLessons.append(lessonsHtml)
+
 }
 const showMyLessonsFailure = function() {
     store.$myLessonsMessage.html('You must log in in order to see your lessons')
@@ -214,6 +203,10 @@ const onEditLessonSuccess = function(response) {
     location.hash = response.lesson._id
 }
 
+const failure = function() {
+    logOutModal.hide()
+    failureModal.show(500)
+}
 module.exports = {
     onSignUpSuccess,
     onSignUpFailure,
@@ -230,7 +223,8 @@ module.exports = {
     showMyLessonsFailure,
     onShowAllLessonsSuccess,
     onDeleteLessonSuccess,
-    onEditLessonSuccess
+    onEditLessonSuccess,
+    failure
     // onCreateLessonTypeFailure
 
 }
