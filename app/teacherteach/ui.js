@@ -5,6 +5,7 @@ const signUpModal = new Modal($('#signUpModal'))
 const logInModal = new Modal($('#logInModal'))
 const changePwdModal = new Modal($('#changePwdModal'))
 const createLessonModal = new Modal($('#createLessonModal'))
+const editModal = new Modal($('#editModal'))
 
 store.$passwordMessage = $('#passwordMessage')
 store.$wrongPasswordMessage = $('#wrongPasswordMessage')
@@ -15,6 +16,8 @@ store.$signUpBtn = $('#signUpBtn')
 store.$signUpMdlBtn = $('#signUpMdlBtn')
 store.$logInMdlBtn = $('#logInMdlBtn')
 store.$form = $('form')
+store.$formControl = $('.form-control')
+store.$welcomeMessage = $('#welcomeMessage')
 
 store.$createLessonMessage = $('.create-lesson-message')
 store.$createLessonErrorMessage = $('.create-lesson-error-message')
@@ -36,15 +39,20 @@ const passwordInputFailure = function() {
 //         store.$createLessonField.css('border', '1px solid red')
 //     }
 //user CRUD
-const onSignUpSuccess = function() {
+const onSignUpSuccess = function(response) {
+
     store.$signUpForm.trigger('reset')
     signUpModal.hide()
     store.$emailHelp.empty()
     store.$passwordMessage.empty()
     store.$password.css('border', '1px solid #dfe4e7')
+    store.$welcomeMessage.html(`Welcome ${response.user.email}! Please sign in`)
     store.$confirmPassword.css('border', '1px solid #dfe4e7')
 }
 const onSignUpFailure = function() {
+    // if (!store.$formControl.val()) {
+    //     store.$emailHelp.html("Please enter valid input").css('color', 'red')
+    // } else
     if (!store.$password.val()) {
         store.$emailHelp.empty()
         store.$passwordMessage.html('Please enter password').css('color', 'red')
@@ -55,10 +63,12 @@ const onSignUpFailure = function() {
     } else if (!store.isConfirmed) {
         store.$passwordMessage.html('Please enter matching passwords').css('color', 'red')
         store.isConfirmed = true
-        store.$signUpForm.trigger('reset')
     } else {
         store.$emailHelp.html("You'r already signed up, please log in").css('color', '#1a6efd')
+        store.$passwordMessage.empty()
         store.$signUpForm.trigger('reset')
+        store.$password.css('border', '1px solid #dfe4e7')
+        store.$confirmPassword.css('border', '1px solid #dfe4e7')
     }
 }
 
@@ -76,6 +86,7 @@ const onLogInSuccess = (response) => {
     store.$createLessonBtn.show()
     store.$newLessons.show()
     store.$myLessonsMessage.empty()
+    store.$welcomeMessage.html(`Hello, ${response.user.email}`)
 }
 
 const onLogInFailure = function() {
@@ -99,12 +110,6 @@ const onChangePwdFailure = function() {
     store.$changePasswordMessage.html('Sorry, the password is incorrect').css('color', 'red')
 }
 
-// const showNewLessons = (response) => {
-//     const newLessonsDiv = document.querySelector($('#newLessons'))
-//     const lessonElement = document.createElement('p')
-//     lessonElement.innerText = response.lesson.title
-//     newLessonsDiv.append(lessonElement)
-// }
 //lesson CRUD
 let lessonHtml = ''
 const addNewLesson = function(response) {
@@ -118,21 +123,20 @@ const addNewLesson = function(response) {
           <p class="card-text">${response.lesson.description}</p>
           <p class="card-text">Unit: ${response.lesson.unit}</p>
           <a href="${response.lesson.url}" class="btn btn-primary">Open lesson</a>
-          <button id="deleteLesson" class="btn">Delete</button>
-          <button id="editLesson" class="btn">Edit</button>
+          <button data-id="${response.lesson._id}" id="deleteLesson" class="btn">Delete</button>
+          <button data-id="${response.lesson._id}" id="editMdlBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
         </div>
       </div>
   `
-    store.$myLessons.prepend(lessonHtml)
+    store.newLesson = store.$myLessons.prepend(lessonHtml)
 }
 
 const onCreateLessonSuccess = function(response) {
     createLessonModal.hide()
     store.$createLessonForm.trigger('reset')
-        // console.log('response: ' + response)
-
     addNewLesson(response)
-
+    store.newLesson.show(1500)
+    location.hash = response.lesson._id
 }
 
 const onCreateLessonFailure = function() {
@@ -176,7 +180,7 @@ const showMyLessonsSuccess = function(response) {
     store.$myLessons.html(lessonsHtml)
 }
 const showMyLessonsFailure = function() {
-    store.$myLessonsMessage.html('You must sign in in order to see your lessons')
+    store.$myLessonsMessage.html('You must log in in order to see your lessons')
 }
 const onShowAllLessonsSuccess = function(response) {
     let lessonsHtml = ''
@@ -202,7 +206,13 @@ const onShowAllLessonsSuccess = function(response) {
 const onDeleteLessonSuccess = function() {
     $(store.event.currentTarget).hide(1000)
 }
-
+const onEditLessonSuccess = function(response) {
+    console.log(response)
+    addNewLesson(response)
+    store.newLesson.show(1500)
+    editModal.hide()
+    location.hash = response.lesson._id
+}
 
 module.exports = {
     onSignUpSuccess,
@@ -219,7 +229,8 @@ module.exports = {
     onCreateLessonFailure,
     showMyLessonsFailure,
     onShowAllLessonsSuccess,
-    onDeleteLessonSuccess
+    onDeleteLessonSuccess,
+    onEditLessonSuccess
     // onCreateLessonTypeFailure
 
 }

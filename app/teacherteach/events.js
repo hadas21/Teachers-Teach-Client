@@ -109,8 +109,8 @@ const onEditLesson = function(event) {
     console.log(store.lessonId)
         //$('.card-body').attr('contenteditable' = 'true')
     api.editLesson(data, store.lessonId)
-        .then(ui.editLessonSuccess)
-        .then(ui.editLessonFailure)
+        .then(ui.onEditLessonSuccess)
+        .then(ui.onEditLessonFailure)
 }
 
 const onShowAllLessons = function() {
