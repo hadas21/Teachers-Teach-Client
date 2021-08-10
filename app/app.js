@@ -26,6 +26,8 @@ $(() => {
     store.$allLessons = $('#allLessons')
     store.$myLessons = $('#myLessons')
     store.$editMdlBtn = $('#editMdlBtn')
+    store.$myLessonsMessage = $('#myLessonsMessage')
+    store.$deleteLesson = $('#deleteLesson')
 
     store.$logOutBtn.hide()
     store.$changePwdBtn.hide()
@@ -50,8 +52,9 @@ $(() => {
     store.$createLessonForm.on('submit', eventsTeach.onCreateLessonForm)
         // store.$createLessonField.on('keyup', eventsTeach.onCreateLessonType)
 
-    store.$myLessons.on('click', '#editMdlBtn', eventsTeach.getLessonId)
+    store.$myLessons.on('click', '.card', eventsTeach.getLessonId)
     store.$editForm.on('submit', eventsTeach.onEditLesson)
+    store.$myLessons.on('click', '#deleteLesson', eventsTeach.onDeleteLesson)
 
 
 })

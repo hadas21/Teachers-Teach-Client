@@ -14,6 +14,7 @@ store.$emailHelp = $('#emailHelp')
 store.$signUpBtn = $('#signUpBtn')
 store.$signUpMdlBtn = $('#signUpMdlBtn')
 store.$logInMdlBtn = $('#logInMdlBtn')
+store.$form = $('form')
 
 store.$createLessonMessage = $('.create-lesson-message')
 store.$createLessonErrorMessage = $('.create-lesson-error-message')
@@ -74,6 +75,7 @@ const onLogInSuccess = (response) => {
     store.$changePwdBtn.show()
     store.$createLessonBtn.show()
     store.$newLessons.show()
+    store.$myLessonsMessage.empty()
 }
 
 const onLogInFailure = function() {
@@ -86,7 +88,7 @@ const onLogOutSuccess = () => {
     store.$changePwdBtn.hide()
     store.$signUpMdlBtn.show()
     store.$logInMdlBtn.show()
-
+    store.$form.trigger('reset')
 }
 
 const onChangePwdSuccess = function() {
@@ -153,7 +155,7 @@ const showMyLessonsSuccess = function(response) {
     response.lessons.forEach(lessons => {
 
         lessonsHtml += `
-        <div class="card col-4">
+        <div class="card text-center col-3 m-3">
         <img src="https://image.shutterstock.com/image-photo/lesson-1-white-chalk-text-260nw-535576588.jpg" class="card-img-top" alt="...">
 
         <div class="card-body">
@@ -162,7 +164,7 @@ const showMyLessonsSuccess = function(response) {
           <p class="card-text">${lessons.description}</p>
           <p class="card-text">Unit: ${lessons.unit}</p>
           <a href="${lessons.url}" class="btn btn-primary">Open lesson</a>
-          <button id="deleteLesson" class="btn">Delete</button>
+          <button data-id="${lessons._id}" id="deleteLesson" class="btn">Delete</button>
           <button data-id="${lessons._id}" id="editMdlBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
       Edit
     </button>
@@ -174,13 +176,13 @@ const showMyLessonsSuccess = function(response) {
     store.$myLessons.html(lessonsHtml)
 }
 const showMyLessonsFailure = function() {
-
+    store.$myLessonsMessage.html('You must sign in in order to see your lessons')
 }
 const onShowAllLessonsSuccess = function(response) {
     let lessonsHtml = ''
     response.lessons.forEach(lessons => {
         lessonsHtml += `
-      <div class="card col-4">
+      <div class="card text-center col-md-3 m-3 ">
       <img src="https://image.shutterstock.com/image-photo/lesson-1-white-chalk-text-260nw-535576588.jpg" class="card-img-top" alt="...">
 
       <div class="card-body">
@@ -195,6 +197,10 @@ const onShowAllLessonsSuccess = function(response) {
   `
     })
     store.$allLessons.html(lessonsHtml)
+}
+
+const onDeleteLessonSuccess = function() {
+    $(store.event.currentTarget).hide(1000)
 }
 
 
@@ -212,7 +218,8 @@ module.exports = {
     onCreateLessonSuccess,
     onCreateLessonFailure,
     showMyLessonsFailure,
-    onShowAllLessonsSuccess
+    onShowAllLessonsSuccess,
+    onDeleteLessonSuccess
     // onCreateLessonTypeFailure
 
 }

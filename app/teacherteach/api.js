@@ -79,6 +79,16 @@ const showAllLessons = function() {
         url: config.apiUrl + '/all'
     })
 }
+
+const deleteLesson = function(lessonId) {
+    return $.ajax({
+        method: 'DELETE',
+        url: config.apiUrl + '/lessons/' + lessonId,
+        headers: {
+            Authorization: 'Bearer ' + store.userToken
+        }
+    })
+}
 module.exports = {
     signUp,
     logIn,
@@ -87,5 +97,6 @@ module.exports = {
     createLesson,
     showMyLessons,
     editLesson,
-    showAllLessons
+    showAllLessons,
+    deleteLesson
 }

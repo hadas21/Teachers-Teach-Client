@@ -98,7 +98,7 @@ const onCreateLessonForm = function(event) {
 const onMyLessonsBtn = function() {
     api.showMyLessons()
         .then(ui.showMyLessonsSuccess)
-        .then(ui.showMyLessonsFailure)
+        .catch(ui.showMyLessonsFailure)
 }
 
 const onEditLesson = function(event) {
@@ -125,6 +125,14 @@ const getLessonId = function(event) {
     store.lessonId = $(event.target).data('id')
     console.log(store.lessonId)
 }
+
+const onDeleteLesson = function(event) {
+    console.log(event)
+    store.event = event
+    store.lessonId = $(event.target).data('id')
+    api.deleteLesson(store.lessonId)
+        .then(ui.onDeleteLessonSuccess)
+}
 module.exports = {
     onSignUp,
     onLogIn,
@@ -137,6 +145,7 @@ module.exports = {
     onMyLessonsBtn,
     onEditLesson,
     onShowAllLessons,
-    getLessonId
+    getLessonId,
+    onDeleteLesson
     //onCreateLessonType
 }
