@@ -7,12 +7,13 @@ const logOutModal = new Modal($('#logOutModal'))
 const changePwdModal = new Modal($('#changePwdModal'))
 const createLessonModal = new Modal($('#createLessonModal'))
 const editModal = new Modal($('#editModal'))
+const deleteModal = new Modal($('#deleteModal'))
 const failureModal = new Modal($('#failureModal'))
 
 //functions
 //scroll to chosen element
 const scroll = function(scrollTo) {
-        $('html,body').animate({
+        store.$body.animate({
                 scrollTop: scrollTo.offset().top
             },
             'slow')
@@ -36,10 +37,11 @@ const addNewLesson = function(response) {
         </div>
       </div>
   `
-    store.newLesson = response.lesson._id
+    store.newLesson = $('.card')
     store.$myLessons.append(lessonHtml)
-    console.log(store.newLesson)
+        //     console.log(store.newLesson)
 }
+
 const displayLessons = function(response, location) {
     let lessonsHtml = ' '
     response.lessons.forEach(lessons => {
@@ -52,8 +54,9 @@ const displayLessons = function(response, location) {
     <p class="card-subtitle mb-2 text-muted">${lessons.subject}</p>
     <p class="card-text">${lessons.description}</p>
     <p class="card-text">Unit: ${lessons.unit}</p>
+    <div>
     <a href="${lessons.url}" class="btn btn-primary">Open lesson</a>
-
+  </div>
   </div>
 </div>
 `
@@ -61,6 +64,31 @@ const displayLessons = function(response, location) {
     location.append(lessonsHtml)
 }
 
+const displayMyLessons = function(response, location) {
+    let lessonsHtml = ' '
+    response.lessons.forEach(lessons => {
+        lessonsHtml += `
+<div data-id="${lessons._id}" class="card text-center col-sm-4 col-md-3 m-3 ">
+<img src="https://image.shutterstock.com/image-photo/lesson-1-white-chalk-text-260nw-535576588.jpg" class="card-img-top" alt="...">
+
+<div class="card-body">
+  <h5 class="card-title">${lessons.title}</h5>
+  <p class="card-subtitle mb-2 text-muted">${lessons.subject}</p>
+  <p class="card-text">${lessons.description}</p>
+  <p class="card-text">Unit: ${lessons.unit}</p>
+
+  <a href="${lessons.url}" class="btn btn-primary">Open lesson</a>
+  <button data-id="${lessons._id}" id="deleteLesson" class="btn hide" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+  <button data-id="${lessons._id}" id="editMdlBtn" type="button" class="btn btn-primary hide" data-bs-toggle="modal" data-bs-target="#editModal">
+Edit
+</button>
+
+</div>
+</div>
+`
+    })
+    location.append(lessonsHtml)
+}
 
 //form validation
 const passwordInputSuccess = function() {
@@ -69,7 +97,6 @@ const passwordInputSuccess = function() {
     store.$confirmPassword.css('border', '1px solid green')
 
 }
-
 const passwordInputFailure = function() {
     store.$password.css('border', '1px solid red')
     store.$confirmPassword.css('border', '1px solid red')
@@ -156,7 +183,7 @@ const onCreateLessonSuccess = function(response) {
     createLessonModal.hide()
     store.$createLessonForm.trigger('reset')
     addNewLesson(response)
-        //store.newLesson.show(1500)
+    store.newLesson.show(1500)
     scroll(store.$myLessons)
 }
 
@@ -164,7 +191,7 @@ const showMyLessonsSuccess = function(response) {
     //scroll down to display my lessons
     scroll(store.$myLessons)
 
-    displayLessons(response, store.$myLessons)
+    displayMyLessons(response, store.$myLessons)
 }
 const showMyLessonsFailure = function() {
     store.$myLessonsMessage.html('You must log in in order to see your lessons')
@@ -174,13 +201,15 @@ const onShowAllLessonsSuccess = function(response) {
 }
 
 const onDeleteLessonSuccess = function() {
-    $(store.event.currentTarget).hide(1000)
+    $(store.event.target).parentsUntil(store.$myLessons).hide(1000)
+    deleteModal.hide()
 }
 const onEditLessonSuccess = function(response) {
         addNewLesson(response)
-        store.newLesson.show(1500)
+            // store.newLesson.show(1500)
+
         editModal.hide()
-        location.hash = response.lesson._id
+
     }
     //message when server not running
 const failure = function() {

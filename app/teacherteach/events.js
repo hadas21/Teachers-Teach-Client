@@ -4,7 +4,22 @@ const api = require('./api')
 const ui = require('./ui')
 const store = require('../store')
 
+//functions
+//gets lesson id by clicking on lesson
+const getLessonId = function(event) {
+    console.log($(event.target).data('id'))
+    store.lessonId = $(event.target).data('id')
+    store.event = event
+        // console.log(store.lessonId)
+}
 
+//index all lessons owned by all users
+const onShowAllLessons = function() {
+    console.log('show')
+    api.showAllLessons()
+        .then(ui.onShowAllLessonsSuccess)
+        .catch(ui.failure)
+}
 
 //open empty modals------------------- maybe unneccasery?
 // const signUpMdlOpn = function() {
@@ -16,6 +31,7 @@ const store = require('../store')
 // const logInMdlOpn = function() {
 //     store.$wrongPasswordMessage.empty()
 // }
+
 
 //check if password and confirmation match
 const onPasswordInput = function() {
@@ -31,21 +47,20 @@ const onPasswordInput = function() {
     console.log(store.$password.val() + ': ' + store.$confirmPassword.val())
 }
 
+//user CRUD
 //sign up
 const onSignUp = function(event) {
-    //prevent page reload
-    event.preventDefault()
-        //get form data
-    const form = event.target
-    const data = getFormFields(form)
-        //send api req
-    api.signUp(data)
-        .then(ui.onSignUpSuccess)
-        .catch(ui.onSignUpFailure)
-}
-
-
-//log in
+        //prevent page reload
+        event.preventDefault()
+            //get form data
+        const form = event.target
+        const data = getFormFields(form)
+            //send api req
+        api.signUp(data)
+            .then(ui.onSignUpSuccess)
+            .catch(ui.onSignUpFailure)
+    }
+    //log in
 const onLogIn = function(event) {
         event.preventDefault()
 
@@ -73,24 +88,33 @@ const onChangePwd = function(event) {
         .catch(ui.onChangePwdFailure)
 }
 
+
+//lesson CRUD
+//create lesson
 const onCreateLesson = function(event) {
-    //prevent page reload
-    event.preventDefault()
+        //prevent page reload
+        event.preventDefault()
 
-    const form = event.target
-    const data = getFormFields(form)
+        const form = event.target
+        const data = getFormFields(form)
 
-    api.createLesson(data)
-        .then(ui.onCreateLessonSuccess)
-        .catch(ui.failure)
-}
-
+        api.createLesson(data)
+            .then(ui.onCreateLessonSuccess)
+            .catch(ui.failure)
+    }
+    //index all lessons created by signed in user
 const onMyLessonsBtn = function() {
-    api.showMyLessons()
-        .then(ui.showMyLessonsSuccess)
-        .catch(ui.showMyLessonsFailure)
-}
-
+        api.showMyLessons()
+            .then(ui.showMyLessonsSuccess)
+            .catch(ui.showMyLessonsFailure)
+    }
+    //delete chosen lessons created by signed in user
+const onDeleteLesson = function() {
+        api.deleteLesson(store.lessonId)
+            .then(ui.onDeleteLessonSuccess)
+            .catch(ui.failure)
+    }
+    //edit chosen lessons created by signed in user
 const onEditLesson = function(event) {
     event.preventDefault()
 
@@ -101,26 +125,11 @@ const onEditLesson = function(event) {
         .then(ui.onEditLessonFailure)
 }
 
-const onShowAllLessons = function() {
-    console.log('show')
-    api.showAllLessons()
-        .then(ui.onShowAllLessonsSuccess)
-        //.catch(ui.onShowAllLessonsFailure)
-}
 
-const getLessonId = function(event) {
-    console.log($(event.target).data('id'))
-    store.lessonId = $(event.target).data('id')
-    console.log(store.lessonId)
-}
 
-const onDeleteLesson = function(event) {
-    console.log(event)
-    store.event = event
-    store.lessonId = $(event.target).data('id')
-    api.deleteLesson(store.lessonId)
-        .then(ui.onDeleteLessonSuccess)
-}
+
+
+
 module.exports = {
     onSignUp,
     onLogIn,

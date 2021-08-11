@@ -33,6 +33,7 @@ $(() => {
     store.$wrongPasswordMessage = $('#wrongPasswordMessage')
     store.$changePasswordMessage = $('#changePasswordMessage')
     store.$passwordMessage = $('#passwordMessage')
+    store.$deleteBtn = $('#deleteBtn')
         //classes
     store.$formControl = $('.form-control')
     store.$createLessonMessage = $('.create-lesson-message')
@@ -49,7 +50,15 @@ $(() => {
     store.$changePwdBtn.hide()
     store.$createLessonBtn.hide()
 
-    // display top of page on load
+    //functions
+    //scroll to chosen element
+    const scroll = function(scrollTo) {
+            store.$body.animate({
+                    scrollTop: scrollTo.offset().top
+                },
+                'slow')
+        }
+        // display top of page on load
     scroll(store.$header)
         //display all users lessons on load
     eventsTeach.onShowAllLessons()
@@ -71,9 +80,12 @@ $(() => {
     //lesson event
     store.$myLessonsBtn.on('click', eventsTeach.onMyLessonsBtn)
     store.$createLessonForm.on('submit', eventsTeach.onCreateLesson)
-    store.$myLessons.on('click', '.card', eventsTeach.getLessonId)
+
     store.$editForm.on('submit', eventsTeach.onEditLesson)
-    store.$myLessons.on('click', '#deleteLesson', eventsTeach.onDeleteLesson)
+    store.$deleteBtn.on('click', eventsTeach.onDeleteLesson)
+
+    //gets lesson id
+    store.$myLessons.on('click', '.card', eventsTeach.getLessonId)
 
 
 })

@@ -63,6 +63,7 @@ const showMyLessons = function() {
 }
 
 const editLesson = function(data, lessonId) {
+    //console.log(lessonId)
     return $.ajax({
         method: 'PATCH',
         url: config.apiUrl + '/lessons/' + lessonId,
@@ -81,6 +82,7 @@ const showAllLessons = function() {
 }
 
 const deleteLesson = function(lessonId) {
+    // console.log(lessonId)
     return $.ajax({
         method: 'DELETE',
         url: config.apiUrl + '/lessons/' + lessonId,
