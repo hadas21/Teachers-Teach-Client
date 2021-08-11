@@ -34,7 +34,8 @@ $(() => {
     store.$passwordMessage = $('#passwordMessage')
     store.$deleteBtn = $('#deleteBtn')
     store.$editMdlBtn = $('#editMdlBtn')
-        //classes
+
+    //classes
     store.$formControl = $('.form-control')
     store.$createLessonErrorMessage = $('.create-lesson-error-message')
     store.$myLessonsMessage = $('.myLessonsMessage')

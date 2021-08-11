@@ -168,6 +168,7 @@ const onLogOutSuccess = () => {
     store.$form.trigger('reset')
     store.$welcomeMessage.empty()
     store.$createLessonBtn.hide()
+    store.$myLessons.empty() //children('.card').hide()
 
 }
 
