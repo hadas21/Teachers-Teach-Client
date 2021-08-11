@@ -21,7 +21,6 @@ $(() => {
     store.$changePwdBtn = $('#changePwdBtn')
     store.$createLessonBtn = $('#createLessonBtn')
     store.$createLessonForm = $('#createLessonForm')
-    store.$createLessonField = $('.create-lesson-field')
     store.$editForm = $('#editForm')
     store.$allLessons = $('#allLessons')
     store.$myLessons = $('#myLessons')
@@ -34,9 +33,9 @@ $(() => {
     store.$changePasswordMessage = $('#changePasswordMessage')
     store.$passwordMessage = $('#passwordMessage')
     store.$deleteBtn = $('#deleteBtn')
+    store.$editMdlBtn = $('#editMdlBtn')
         //classes
     store.$formControl = $('.form-control')
-    store.$createLessonMessage = $('.create-lesson-message')
     store.$createLessonErrorMessage = $('.create-lesson-error-message')
     store.$myLessonsMessage = $('.myLessonsMessage')
     store.$myLessonsBtn = $('.myLessonsBtn')
@@ -59,7 +58,7 @@ $(() => {
                 'slow')
         }
         // display top of page on load
-    scroll(store.$header)
+    scroll(store.$body)
         //display all users lessons on load
     eventsTeach.onShowAllLessons()
 
@@ -68,8 +67,13 @@ $(() => {
     store.$confirmPassword.on('keyup', eventsTeach.onPasswordInput)
     store.$password.on('keyup', eventsTeach.onPasswordInput)
         //reset modal when open to show user empty forms------------------- maybe unneccasery?
-        // store.$signUpMdlBtn.on('click', eventsTeach.signUpMdlOpn)
-        // store.$logInMdlBtn.on('click', eventsTeach.logInMdlOpn)
+    store.$signUpMdlBtn.on('click', eventsTeach.signUpMdlOpn)
+    store.$logInMdlBtn.on('click', eventsTeach.logInMdlOpn)
+    store.$changePwdBtn.on('click', eventsTeach.changePwdMdlOpn)
+    store.$createLessonBtn.on('click', eventsTeach.createLsnMdlOpn)
+    store.$editMdlBtn.on('click', eventsTeach.editLsnMdlOpn)
+
+
 
     //user events
     store.$signUpForm.on('submit', eventsTeach.onSignUp)

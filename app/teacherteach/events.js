@@ -21,16 +21,28 @@ const onShowAllLessons = function() {
         .catch(ui.failure)
 }
 
-//open empty modals------------------- maybe unneccasery?
-// const signUpMdlOpn = function() {
-//     store.$emailHelp.empty()
-//     store.$passwordMessage.empty()
-//     store.$password.css('border', '1px solid #dfe4e7')
-//     store.$confirmPassword.css('border', '1px solid #dfe4e7')
-// }
-// const logInMdlOpn = function() {
-//     store.$wrongPasswordMessage.empty()
-// }
+//open empty modals
+const signUpMdlOpn = function() {
+    store.$emailHelp.empty()
+    store.$passwordMessage.empty()
+    store.$password.css('border', '1px solid #dfe4e7')
+    store.$confirmPassword.css('border', '1px solid #dfe4e7')
+    store.$signUpForm.trigger('reset')
+}
+const logInMdlOpn = function() {
+    store.$wrongPasswordMessage.empty()
+    store.$logInForm.trigger('reset')
+}
+const changePwdMdlOpn = function() {
+    store.$changePasswordMessage.empty()
+    store.$changePwdForm.trigger('reset')
+}
+const createLsnMdlOpn = function() {
+    store.$createLessonForm.trigger('reset')
+}
+const editLsnMdlOpn = function() {
+    store.$editForm.trigger('reset')
+}
 
 
 //check if password and confirmation match
@@ -122,7 +134,7 @@ const onEditLesson = function(event) {
     const data = getFormFields(form)
     api.editLesson(data, store.lessonId)
         .then(ui.onEditLessonSuccess)
-        .then(ui.failure)
+        .catch(ui.failure)
 }
 
 module.exports = {
@@ -136,8 +148,12 @@ module.exports = {
     onEditLesson,
     onShowAllLessons,
     getLessonId,
-    onDeleteLesson
+
     //onCreateLessonType
-    // signUpMdlOpn,
-    // logInMdlOpn,
+    signUpMdlOpn,
+    logInMdlOpn,
+    changePwdMdlOpn,
+    createLsnMdlOpn,
+    editLsnMdlOpn,
+    onDeleteLesson
 }

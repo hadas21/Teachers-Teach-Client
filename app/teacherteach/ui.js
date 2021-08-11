@@ -23,7 +23,7 @@ const scroll = function(scrollTo) {
 const addNewLesson = function(response) {
     let lessonHtml = ' '
     lessonHtml += `
-    <div class="card col-4">
+    <div class="card text-center col-4">
         <img src="https://image.shutterstock.com/image-photo/lesson-1-white-chalk-text-260nw-535576588.jpg" class="card-img-top" alt="...">
 
         <div class="card-body">
@@ -32,8 +32,10 @@ const addNewLesson = function(response) {
           <p class="card-text">${response.lesson.description}</p>
           <p class="card-text">Unit: ${response.lesson.unit}</p>
           <a href="${response.lesson.url}" class="btn btn-primary">Open lesson</a>
-          <button data-id="${response.lesson._id}" id="deleteLesson" class="btn">Delete</button>
-          <button data-id="${response.lesson._id}" id="editMdlBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
+       <button data-id="${response.lesson._id}" id="deleteLesson" class="btn hide" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+  <button data-id="${response.lesson._id}" id="editMdlBtn" type="button" class="btn btn-primary hide" data-bs-toggle="modal" data-bs-target="#editModal">
+Edit
+</button>
         </div>
       </div>
   `
@@ -46,7 +48,7 @@ const displayLessons = function(response, location) {
     let lessonsHtml = ' '
     response.lessons.forEach(lessons => {
         lessonsHtml += `
-  <div class="card text-center col-sm-4 col-md-3 m-3 ">
+  <div class="card text-center col-4">
   <img src="https://image.shutterstock.com/image-photo/lesson-1-white-chalk-text-260nw-535576588.jpg" class="card-img-top" alt="...">
 
   <div class="card-body">
@@ -68,7 +70,7 @@ const displayMyLessons = function(response, location) {
     let lessonsHtml = ' '
     response.lessons.forEach(lessons => {
         lessonsHtml += `
-<div data-id="${lessons._id}" class="card text-center col-sm-4 col-md-3 m-3 ">
+<div data-id="${lessons._id}" class="card text-center col-4">
 <img src="https://image.shutterstock.com/image-photo/lesson-1-white-chalk-text-260nw-535576588.jpg" class="card-img-top" alt="...">
 
 <div class="card-body">
@@ -147,7 +149,7 @@ const onLogInSuccess = (response) => {
     store.$changePwdBtn.show()
     store.$createLessonBtn.show()
     store.$myLessonsMessage.empty()
-    store.$welcomeMessage.html(`Hello, ${response.user.email}`)
+    store.$welcomeMessage.html(`Hello,<br> ${response.user.email}`)
     store.$changePasswordMessage.empty()
 }
 const onLogInFailure = function() {
