@@ -1,17 +1,23 @@
-@import '~bootstrap/scss/bootstrap';
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
-// #welcome {
-//     font-family: 'Indie Flower', cursive;
-//     background-image: url('https://teachingsuperheroes.files.wordpress.com/2018/04/chalkboard-tr.png');
-// }
-// #delete {
-//     size: 0.1rem;
-// }
-#avatar {
-    height: 3rem;
-}
+        @import '~bootstrap/scss/bootstrap';
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+        // #welcome {
+        //     font-family: 'Indie Flower', cursive;
+        //     background-image: url('https://teachingsuperheroes.files.wordpress.com/2018/04/chalkboard-tr.png');
+        // }
+        // #delete {
+        //     size: 0.1rem;
+        // }
+        #avatar {
+            height: 4rem;
+            width: 4rem;
+        }
 
-// header {
-//     background-image: url("https://lh3.googleusercontent.com/proxy/AOChpti7Lc7T3Rj8fd3Us_taKKC1Vc1M5MulVG47kU-Ch2zDB4uBQA-SXwveQhGeKbYrRjL29wAxx-WfE6kNd6EHLX8SjeXVYhyoIKOYiueXPWPPIcnzxy5xOAkMdmLUIKE");
-//     background-size: cover;
-// }
+        // @media screen and (max-width: 480px) {
+        //     #extra-text {
+        //         display: none;
+        //     }
+        // }
+        // header {
+        //     background-image: url("https://lh3.googleusercontent.com/proxy/AOChpti7Lc7T3Rj8fd3Us_taKKC1Vc1M5MulVG47kU-Ch2zDB4uBQA-SXwveQhGeKbYrRjL29wAxx-WfE6kNd6EHLX8SjeXVYhyoIKOYiueXPWPPIcnzxy5xOAkMdmLUIKE");
+        //     background-size: cover;
+        // }

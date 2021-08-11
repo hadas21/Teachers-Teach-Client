@@ -14,44 +14,46 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row g-3 pt-3 ">
-            <nav class="navbar navbar-light bg-light col-11">
-                <div class="container">
-                    <div>
-                        <!-- SIGN UP-->
-                        <button id="signUpMdlBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signUpModal">
-                  Sign Up
-                 </button>
-                        <!-- LOG IN-->
-                        <button id="logInMdlBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logInModal">
-                  Log In
-                </button>
-                        <!-- LOG OUT -->
-                        <button id="logOutMdlBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logOutModal">
-                  Log Out
-                </button>
-                        <!-- CHANGE PASSWORD -->
-                        <button id="changePwdBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changePwdModal">
-              Change Password
-            </button>
-                    </div>
+    <div class="container pt-3">
+        <div class="g-3 justify-content-center">
+
+            <nav class="navbar navbar-light bg-light " aria-label="breadcrumb">
+                <ol class="breadcrumb text-nowrap ms-auto mt-3">
+                    <li id="welcomeMessage" class="breadcrumb-item text-nowrap"></li>
+                    <!-- SIGN UP-->
+                    <li id="signUpMdlBtn" type="button" data-bs-toggle="modal" data-bs-target="#signUpModal" class="breadcrumb-item text-nowrap" aria-current="page"><a>Sign Up</a></li>
+                    <!-- LOG IN-->
+                    <li button id="logInMdlBtn" type="button" data-bs-toggle="modal" data-bs-target="#logInModal" class="breadcrumb-item text-nowrap"><a>Log In</a></li>
+                    <!-- LOG OUT -->
+                    <li button id="logOutMdlBtn" type="button" data-bs-toggle="modal" data-bs-target="#logOutModal" class="breadcrumb-item text-nowrap"><a>Log Out</a></li>
+                    <!-- CHANGE PASSWORD -->
+                    <li button id="changePwdBtn" type="button" data-bs-toggle="modal" data-bs-target="#changePwdModal" class="breadcrumb-item text-nowrap"><a>Change Password</a></li>
+
+                </ol>
+                <div>
+                    <img id="avatar" class="d-none d-sm-inline img-fluid mx-4 " alt="user-icon" src="https://icons-for-free.com/iconfiles/png/512/user+icon-1320184287928049364.png">
+
                 </div>
             </nav>
-            <div class="col-1">
-                <img id="avatar" class="rounded img-fluid float-end" alt="user-icon" src="https://icons-for-free.com/iconfiles/png/512/user+icon-1320184287928049364.png">
+
+
+
+            <div class="col-10"></div>
+            <div class="col-2">
+
             </div>
-            <figcaption id="welcomeMessage" class="figure-caption text-end mt-0"></figcaption>
         </div>
-        <header class="container p-5">
-            <div class="border p-5">
-                <p>
-                    <br><br> <br> </p>
-                <h1>Welcome</h1>
-                <p><br> <br>Welcome to the platform that allows teachers to simply teach. here you can share materials with your colleagues and enrich your class. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                    been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-                    remaining essentially unchanged , and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
+        <header class="container p-3 p-md-5">
+            <div class="border p-2 p-md-5 text-wrap" height="3rem">
+                <p class="d-none d-sm-inline">
+                    <br> <br> </p>
+                <h1><br>Welcome</h1>
+                <p class="d-none d-sm-inline">
+                    <br> </p>
+                <p> <br>Welcome to the platform that allows teachers to simply teach. here you can share materials with your colleagues and enrich your class. <br><span class="d-none d-sm-inline">All a good teacher wants, is to teach. To give over inspiring lessons, interesting classes.
+                    But those materials, don't just come from nowhere! they take hours of research and hard work to reach a complete lesson. just ONE lesson. by the end of the day, there is no more energy left to actually.... teach. This is where we come
+                    in. Teachers Teach is a platform that will allow teachers to do what they really love, by sharing recourses, that will improve and enrich their lessons with a click. Because all we have is each other.
+                  </span></p>
             </div>
         </header>
         <nav class="navbar navbar-light bg-light col-12">
@@ -198,7 +200,7 @@
                                 <div class="form-text create-lesson-message"></div>
                             </div>
                             <div class="form-floating mb-3">
-                                <textarea name="lesson[description]" type="textarea" class="form-control create-lesson-field" placeholder="Describe your lesson" id="floatingTextarea2" style="height: 100px" required></textarea>
+                                <textarea name="lesson[description]" type="textarea" maxlength="75" class="form-control create-lesson-field" placeholder="Describe your lesson" id="floatingTextarea2" style="height: 100px" required></textarea>
                                 <label for="floatingTextarea2">Description</label>
                                 <div class="form-text create-lesson-message"></div>
                             </div>
@@ -255,7 +257,7 @@
                                 <div class="form-text create-lesson-message"></div>
                             </div>
                             <div class="form-floating mb-3">
-                                <textarea name="lesson[description]" type="textarea" class="form-control create-lesson-field" placeholder="Describe your lesson" style="height: 100px" required></textarea>
+                                <textarea name="lesson[description]" type="textarea" maxlength="75" class="form-control create-lesson-field" placeholder="Describe your lesson" style="height: 100px" required></textarea>
                                 <label for="floatingTextarea2">Description</label>
                                 <div class="form-text create-lesson-message"></div>
                             </div>
@@ -333,23 +335,27 @@
 
         <section class=" px-5">
             <div class="container p-5"></div>
-            <div id="allLessons" class="row g-5">
+            <div id="allLessons" class="row g-md-5">
 
             </div>
 
         </section>
-        <section id="myLessons" class="row">
-            <div>
-                <button type="button" class="btn btn-primary myLessonsBtn">Display My Lessons</button>
-                <p class="form-text myLessonsMessage"></p>
-            </div>
-            <div>
-                <h4 id="showMyLessons">My Lessons</h4>
 
-            </div>
+        <section class=" px-5">
+            <div class="container p-5"></div>
+            <div id="myLessons" class="row  g-5">
+                <div>
+                    <button type="button" class="btn btn-primary myLessonsBtn">Display My Lessons</button>
+                    <p class="form-text myLessonsMessage"></p>
+                </div>
+                <div>
+                    <h4 id="showMyLessons">My Lessons</h4>
 
+                </div>
+            </div>
 
         </section>
+
     </div>
 </body>
 

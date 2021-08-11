@@ -23,7 +23,8 @@ const scroll = function(scrollTo) {
 const addNewLesson = function(response) {
     let lessonHtml = ' '
     lessonHtml += `
-    <div class="card text-center col-4">
+    <div class="col-4">
+    <div class="card text-center">
         <img src="https://image.shutterstock.com/image-photo/lesson-1-white-chalk-text-260nw-535576588.jpg" class="card-img-top" alt="...">
 
         <div class="card-body">
@@ -38,39 +39,42 @@ Edit
 </button>
         </div>
       </div>
+      </div>
   `
     store.newLesson = $('.card')
     store.$myLessons.append(lessonHtml)
         //     console.log(store.newLesson)
 }
-
 const displayLessons = function(response, location) {
+
     let lessonsHtml = ' '
     response.lessons.forEach(lessons => {
         lessonsHtml += `
-  <div class="card text-center col-4">
+        <div class="col-6 col-md-4">
+  <div class="card text-center">
   <img src="https://image.shutterstock.com/image-photo/lesson-1-white-chalk-text-260nw-535576588.jpg" class="card-img-top" alt="...">
 
   <div class="card-body">
     <h5 class="card-title">${lessons.title}</h5>
-    <p class="card-subtitle mb-2 text-muted">${lessons.subject}</p>
-    <p class="card-text">${lessons.description}</p>
+    <p class="card-subtitle mb-2 text-muted" >${lessons.subject}</p>
+    <p class="card-text d-none d-sm-inline">${lessons.description}</p>
     <p class="card-text">Unit: ${lessons.unit}</p>
     <div>
-    <a href="${lessons.url}" class="btn btn-primary">Open lesson</a>
+    <a href="${lessons.url}" class="btn btn-primary">Open</a>
   </div>
   </div>
+</div>
 </div>
 `
     })
     location.append(lessonsHtml)
 }
-
 const displayMyLessons = function(response, location) {
     let lessonsHtml = ' '
     response.lessons.forEach(lessons => {
         lessonsHtml += `
-<div data-id="${lessons._id}" class="card text-center col-4">
+        <div class="col-4">
+<div data-id="${lessons._id}" class="card text-center">
 <img src="https://image.shutterstock.com/image-photo/lesson-1-white-chalk-text-260nw-535576588.jpg" class="card-img-top" alt="...">
 
 <div class="card-body">
@@ -85,6 +89,7 @@ const displayMyLessons = function(response, location) {
 Edit
 </button>
 
+</div>
 </div>
 </div>
 `
@@ -149,7 +154,7 @@ const onLogInSuccess = (response) => {
     store.$changePwdBtn.show()
     store.$createLessonBtn.show()
     store.$myLessonsMessage.empty()
-    store.$welcomeMessage.html(`Hello,<br> ${response.user.email}`)
+    store.$welcomeMessage.html(`Hello, ${response.user.email}`)
     store.$changePasswordMessage.empty()
 }
 const onLogInFailure = function() {
@@ -212,7 +217,6 @@ const onDeleteLessonSuccess = function() {
     //edit
 const onEditLessonSuccess = function(response) {
 
-        // store.newLesson.show(1500)
         $(store.event.target).parentsUntil(store.$myLessons).hide(1000)
         addNewLesson(response)
         editModal.hide()
@@ -240,6 +244,5 @@ module.exports = {
     onDeleteLessonSuccess,
     onEditLessonSuccess,
     failure
-    // onCreateLessonTypeFailure
 
 }
