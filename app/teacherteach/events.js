@@ -122,13 +122,8 @@ const onEditLesson = function(event) {
     const data = getFormFields(form)
     api.editLesson(data, store.lessonId)
         .then(ui.onEditLessonSuccess)
-        .then(ui.onEditLessonFailure)
+        .then(ui.failure)
 }
-
-
-
-
-
 
 module.exports = {
     onSignUp,

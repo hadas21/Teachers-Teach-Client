@@ -177,16 +177,21 @@ const onChangePwdFailure = function() {
     store.$changePasswordMessage.html('Sorry, the password is incorrect').css('color', 'red')
 }
 
+//index all for all users
+const onShowAllLessonsSuccess = function(response) {
+    displayLessons(response, store.$allLessons)
+}
+
 //lesson CRUD
 //create
 const onCreateLessonSuccess = function(response) {
-    createLessonModal.hide()
-    store.$createLessonForm.trigger('reset')
-    addNewLesson(response)
-    store.newLesson.show(1500)
-    scroll(store.$myLessons)
-}
-
+        createLessonModal.hide()
+        store.$createLessonForm.trigger('reset')
+        addNewLesson(response)
+        store.newLesson.show(1500)
+        scroll(store.$myLessons)
+    }
+    //read all
 const showMyLessonsSuccess = function(response) {
     //scroll down to display my lessons
     scroll(store.$myLessons)
@@ -194,28 +199,27 @@ const showMyLessonsSuccess = function(response) {
     displayMyLessons(response, store.$myLessons)
 }
 const showMyLessonsFailure = function() {
-    store.$myLessonsMessage.html('You must log in in order to see your lessons')
-}
-const onShowAllLessonsSuccess = function(response) {
-    displayLessons(response, store.$allLessons)
-}
-
-const onDeleteLessonSuccess = function() {
-    $(store.event.target).parentsUntil(store.$myLessons).hide(1000)
-    deleteModal.hide()
-}
-const onEditLessonSuccess = function(response) {
-        addNewLesson(response)
-            // store.newLesson.show(1500)
-
-        editModal.hide()
-
+        store.$myLessonsMessage.html('You must log in in order to see your lessons')
     }
-    //message when server not running
+    //delete
+const onDeleteLessonSuccess = function() {
+        $(store.event.target).parentsUntil(store.$myLessons).hide(1000)
+        deleteModal.hide()
+    }
+    //edit
+const onEditLessonSuccess = function(response) {
+
+        // store.newLesson.show(1500)
+        $(store.event.target).parentsUntil(store.$myLessons).hide(1000)
+        addNewLesson(response)
+        editModal.hide()
+    }
+    //general failure message
 const failure = function() {
     logOutModal.hide()
     failureModal.show(500)
 }
+
 module.exports = {
     onSignUpSuccess,
     onSignUpFailure,
