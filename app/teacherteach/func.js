@@ -45,18 +45,20 @@ const displayLessons = function (response, location) {
   let lessonsHtml = ' '
   response.lessons.forEach(lessons => {
     lessonsHtml += `
-        <div class="col-6 col-md-4">
+        <div class="col-11 col-sm-4 col-md-4 mx-auto px-sm-1 my-2">
   <div class="card h-100 text-center">
-  <img src="https://image.shutterstock.com/image-photo/lesson-1-white-chalk-text-260nw-535576588.jpg" class="card-img-top" alt="...">
-
-  <div class="card-body d-flex flex-column">
-    <h5 class="card-title">${lessons.title}</h5>
-    <p class="card-subtitle mb-2 text-muted" >${lessons.subject}</p>
-    <p class="card-text d-none d-sm-inline">${lessons.description}</p>
-    <p class="card-text">Unit: ${lessons.unit}</p>
-    <div>
-    <a href="${lessons.url}" class="btn btn-primary align-self-end">Open</a>
+  <div class="card-header">
+<p class="card-subtitle" >${lessons.subject}</p>
   </div>
+  <div class="card-body d-flex flex-column px-1 py-3">
+  <h6 class="card-title h-50">${lessons.title}</h6>
+
+    <p class="card-text h-100 d-sm-inline m-0">${lessons.description}</p>
+    <p class="card-text">Unit: ${lessons.unit}</p>
+    </div>
+    <div class="card-footer">
+    <a href="${lessons.url}" id="view-lesson-btn" class="btn btn-secondary btn-sm  mb-1 mt-2">View Lesson</a>
+
   </div>
 </div>
 </div>

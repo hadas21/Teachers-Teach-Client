@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Do not add `link` tags-->
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 
     <!-- Do not add `script` tags-->
     <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
@@ -14,12 +14,12 @@
 </head>
 
 <body>
-    <div class="container pt-3">
+
         <div class="g-3 justify-content-center">
 
-            <nav class="navbar navbar-light bg-light " aria-label="breadcrumb">
-                <ol class="breadcrumb text-nowrap ms-auto mt-3">
-                    <li id="welcomeMessage" class="breadcrumb-item text-nowrap"></li>
+            <nav class="navbar navbar-light bg-light" aria-label="breadcrumb">
+                <ol class="breadcrumb text-nowrap mx-2 mt-3">
+                    <li id="welcomeMessage" class="text-nowrap"></li>
                     <!-- SIGN UP-->
                     <li id="signUpMdlBtn" type="button" data-bs-toggle="modal" data-bs-target="#signUpModal" class="breadcrumb-item text-nowrap" aria-current="page"><a>Sign Up</a></li>
                     <!-- LOG IN-->
@@ -31,18 +31,13 @@
 
                 </ol>
                 <div>
-                    <img id="avatar" class="d-none d-sm-inline img-fluid mx-4 " alt="user-icon" src="https://icons-for-free.com/iconfiles/png/512/user+icon-1320184287928049364.png">
+                    <img id="avatar" class="d-sm-inline img-fluid mx-4 " alt="user-icon" src="img/favicon.ico">
 
                 </div>
             </nav>
 
-
-
-            <div class="col-10"></div>
-            <div class="col-2">
-
             </div>
-        </div>
+
         <header class="container p-3 p-md-5">
             <div class="border p-2 p-md-5 text-wrap" height="3rem">
                 <p class="d-none d-sm-inline">
@@ -55,10 +50,11 @@
                     in. Teachers Teach is a platform that will allow teachers to do what they really love, by sharing recourses, that will improve and enrich their lessons with a click. Because all we have is each other.
                   </span></p>
             </div>
+
         </header>
-        <nav class="navbar navbar-light bg-light col-12">
+        <nav class="navbar navbar-light bg-light col-12  sticky-top">
             <div class="container">
-                <button type="button" class="btn btn-primary myLessonsBtn">Display My Lessons</button>
+                <button type="button" class="btn btn-primary myLessonsBtn py-0">Display My Lessons</button>
                 <p class="form-text myLessonsMessage"></p>
 
                 <!-- CREATE LESSON -->
@@ -117,12 +113,14 @@
                         <form id="logInForm">
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                <input value="ss@ss.ss" name="credentials[email]" placeholder="an@example.email" type="email" class="form-control" aria-describedby="emailHelp" required>
+                                <input
+                                name="credentials[email]" placeholder="an@example.email" type="email" class="form-control" aria-describedby="emailHelp" required>
                                 <div id="wrongPasswordMessage" class="form-text">Don't enter a real email or password! this website is not secure</div>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputPassword1" class="form-label">Password</label>
-                                <input value="ss" name="credentials[password]" type="password" class="form-control" required>
+                                <input
+                                 name="credentials[password]" type="password" class="form-control" required>
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-outline">Submit</button>
@@ -333,16 +331,14 @@
         </div>
         <!-- WELCOME -->
 
-        <section class=" px-5">
-            <div class="container p-5"></div>
+        <main>
+          <div class="container card-container">
             <div id="allLessons" class="row g-md-5">
-
+              </div>
             </div>
+          </main>
 
-        </section>
-
-        <section class=" px-5">
-            <div class="container p-5"></div>
+        <section class=" px-8">
             <div id="myLessons" class="row  g-5">
                 <div>
                     <button type="button" class="btn btn-primary myLessonsBtn">Display My Lessons</button>
@@ -350,13 +346,10 @@
                 </div>
                 <div>
                     <h4 id="showMyLessons">My Lessons</h4>
-
                 </div>
             </div>
 
         </section>
-
-    </div>
 </body>
 
 </html>
