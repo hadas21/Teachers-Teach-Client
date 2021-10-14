@@ -3,7 +3,8 @@ const store = require('../store')
 // functions
 // gets lesson id by clicking on lesson
 const getLessonId = function (event) {
-  store.lessonId = $(event.target).data('id')
+  console.log(event.currentTarget.dataset.id)
+  store.lessonId = (event.currentTarget.dataset.id)
   store.event = event
 }
 

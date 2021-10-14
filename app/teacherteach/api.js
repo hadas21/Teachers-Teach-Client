@@ -80,6 +80,7 @@ const showAllLessons = function () {
 }
 
 const deleteLesson = function (lessonId) {
+  console.log(lessonId)
   return $.ajax({
     method: 'DELETE',
     url: config.apiUrl + '/lessons/' + lessonId,
