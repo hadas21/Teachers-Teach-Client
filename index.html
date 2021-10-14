@@ -11,6 +11,8 @@
     <!-- Do not add `script` tags-->
     <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
     <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="path/to/dist/feather.js"></script>
+
 </head>
 
 <body>
@@ -334,21 +336,22 @@
         <main>
           <div class="container card-container">
             <div id="allLessons" class="row g-md-5">
+            </div>
+          </div>
+        </main>
+
+        <section>
+          <div class="container card-container">
+            <div id="myLessons" class="row  g-md-5">
+              <div>
+                  <button type="button" class="btn btn-primary myLessonsBtn">Display My Lessons</button>
+                  <p class="form-text myLessonsMessage"></p>
+              </div>
+              <div>
+                  <h4 id="showMyLessons">My Lessons</h4>
               </div>
             </div>
-          </main>
-
-        <section class=" px-8">
-            <div id="myLessons" class="row  g-5">
-                <div>
-                    <button type="button" class="btn btn-primary myLessonsBtn">Display My Lessons</button>
-                    <p class="form-text myLessonsMessage"></p>
-                </div>
-                <div>
-                    <h4 id="showMyLessons">My Lessons</h4>
-                </div>
-            </div>
-
+          </div>
         </section>
 </body>
 
