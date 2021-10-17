@@ -23,14 +23,14 @@ const addNewLesson = function (response) {
   lessonHtml += `
     <div class="col-6 col-sm-3 col-md-2 mx-auto px-sm-1 my-2">
       <div class="shadow-sm rounded card h-100 text-center">
-        <div class="card-body d-flex flex-column px-1 py-3">
+        <div class="h-100 card-body d-flex flex-column px-1 py-3">
         <a href="${response.url}" class="text-dark text-decoration-none title">
-          <h6 class="title card-title h-50">${response.lesson.title}</h6>
+          <h6 class="title card-title">${response.lesson.title}</h6>
         </a>
-        <div class="lesson-description px-3 pb-2 h-75">
+        <div class="lesson-description px-3 pb-2">
           <p class="d-none d-sm-inline fw-light fs-6 m-0">${response.lesson.description}</p>
         </div>
-        <div>
+        <div class="pt-1">
           <p class="d-none d-md-inline card-text">Unit: ${response.lesson.unit}</p>
           <p class="card-subtitle text-muted" >${response.subject}</p>
           </div>
@@ -68,14 +68,14 @@ const displayLessons = function (response, location) {
     lessonsHtml += `
         <div class="col-6 col-sm-3 col-md-2 mx-auto px-sm-1 my-2">
   <div class="shadow-sm rounded card h-100 text-center">
-  <div class="card-body d-flex flex-column px-1 py-3">
+  <div class="card-body d-flex flex-column px-1 py-3 h-100">
     <a href="${lessons.url}" class="text-dark text-decoration-none">
-      <h6 class="title card-title h-50">${lessons.title}</h6>
+      <h6 class="title card-title">${lessons.title}</h6>
     </a>
-    <div class="lesson-description px-3 pb-2 h-75">
+    <div class="lesson-description px-3 pb-2">
       <p class="d-none d-sm-inline fw-light fs-6 m-0">${lessons.description}</p>
     </div>
-    <div>
+    <div class="pt-1">
     <p class="d-none d-md-inline card-text">Unit: ${lessons.unit}</p>
     <p class="card-subtitle text-muted" >${lessons.subject}</p>
     </div>
@@ -92,16 +92,17 @@ const displayMyLessons = function (response, location) {
     lessonsHtml += `
       <div class="col-6 col-sm-3 col-md-2 mx-auto px-sm-1 my-2">
         <div data-id="${lessons._id}" class="shadow-sm rounded card h-100 text-center">
-          <div class="card-body d-flex flex-column px-1 py-3">
+          <div class="h-100 card-body d-flex flex-column px-1 py-3">
            <a href="${lessons.url}" class="text-dark text-decoration-none">
-            <h6 class="title card-title h-50">${lessons.title}</h6>
+            <h6 class="title card-title">${lessons.title}</h6>
             </a>
             <div class="lesson-description px-3 pb-2 h-75">
             <p class="d-none d-sm-inline fw-light fs-6 m-0">${lessons.description}</p>
             </div>
+            <div class="pt-1">
             <p class="d-none d-md-inline card-text">Unit: ${lessons.unit}</p>
             <p class="card-subtitle text-muted" >${lessons.subject}</p>
-
+</div>
           </div>
 
           <div class="row p-1">
