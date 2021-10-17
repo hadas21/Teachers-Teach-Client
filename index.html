@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TeachersTeach</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Do not add `link` tags-->
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- Do not add `script` tags-->
+    <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+    <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="path/to/dist/feather.js"></script>
+
+</head>
+
+<body>
+
+        <div class="g-3 justify-content-center">
+
+            <nav class="navbar navbar-light bg-light" aria-label="breadcrumb">
+                <ol class="breadcrumb text-nowrap mx-2 mt-3">
+                    <li id="welcomeMessage" class="text-nowrap"></li>
+                    <!-- SIGN UP-->
+                    <li id="signUpMdlBtn" type="button" data-bs-toggle="modal" data-bs-target="#signUpModal" class="breadcrumb-item text-nowrap" aria-current="page"><a>Sign Up</a></li>
+                    <!-- LOG IN-->
+                    <li button id="logInMdlBtn" type="button" data-bs-toggle="modal" data-bs-target="#logInModal" class="breadcrumb-item text-nowrap"><a>Log In</a></li>
+                    <!-- LOG OUT -->
+                    <li button id="logOutMdlBtn" type="button" data-bs-toggle="modal" data-bs-target="#logOutModal" class="breadcrumb-item text-nowrap"><a>Log Out</a></li>
+                    <!-- CHANGE PASSWORD -->
+                    <li button id="changePwdBtn" type="button" data-bs-toggle="modal" data-bs-target="#changePwdModal" class="breadcrumb-item text-nowrap"><a>Change Password</a></li>
+
+                </ol>
+                <div>
+                    <img id="avatar" class="d-sm-inline img-fluid mx-4 " alt="user-icon" src="favicon.ico">
+
+                </div>
+            </nav>
+
+            </div>
+
+        <header class="container p-3 p-md-5">
+            <div class="border p-2 p-md-5 text-wrap" height="3rem">
+                <p class="d-none d-sm-inline">
+                    <br> <br> </p>
+                <h1><br>Welcome</h1>
+                <p class="d-none d-sm-inline">
+                    <br> </p>
+                <p> <br>Welcome to the platform that allows teachers to simply teach. here you can share materials with your colleagues and enrich your class. <br><span class="d-none d-sm-inline">All a good teacher wants, is to teach. To give over inspiring lessons, interesting classes.
+                    But those materials, don't just come from nowhere! they take hours of research and hard work to reach a complete lesson. just ONE lesson. by the end of the day, there is no more energy left to actually.... teach. This is where we come
+                    in. Teachers Teach is a platform that will allow teachers to do what they really love, by sharing recourses, that will improve and enrich their lessons with a click. Because all we have is each other.
+                  </span></p>
+            </div>
+
+        </header>
+        <nav class="navbar navbar-light bg-light col-12  sticky-top">
+            <div class="container">
+                <button type="button" class="btn btn-primary myLessonsBtn py-0">Display My Lessons</button>
+                <p class="form-text myLessonsMessage"></p>
+
+                <!-- CREATE LESSON -->
+                <button id="createLessonBtn" type="button" class="btn btn-primary rounded-circle" data-bs-toggle="modal" data-bs-target="#createLessonModal">
+                      +
+                    </button>
+            </div>
+        </nav>
+
+
+        <!--SIGN UP Modal -->
+        <div class="modal fade" id="signUpModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="signUpForm">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                <input id="emailInput" name="credentials[email]" placeholder="an@example.email" type="email" class="form-control" aria-describedby="emailHelp" required>
+                                <div class="form-text">
+                                    <p id="emailHelp">Don't enter a real email or password! this website is not secure</p>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input id="password" name="credentials[password]" type="password" class="form-control" required>
+                                <div id="passwordMessage" class="form-text"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirm-password" class="form-label">Password Confirmation</label>
+                                <input id="confirm-password" name="credentials[password_confirmation]" type="password" class="form-control" required>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="signUpBtn" type="submit" class="btn btn-outline">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--LOG IN Modal -->
+        <div class="modal fade" id="logInModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Log In</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="logInForm">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                <input
+                                name="credentials[email]" placeholder="an@example.email" type="email" class="form-control" aria-describedby="emailHelp" required>
+                                <div id="wrongPasswordMessage" class="form-text">Don't enter a real email or password! this website is not secure</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Password</label>
+                                <input
+                                 name="credentials[password]" type="password" class="form-control" required>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--LOG OUT Modal -->
+        <div class="modal fade" id="logOutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="logOutMdl">Log Out</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to log out?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nope</button>
+                        <button id="logOutBtn" type="button" class="btn btn-primary">I'm sure</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--CHANGE PASSWORD Modal -->
+        <div class="modal fade" id="changePwdModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Change Password</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="changePwdForm">
+                            <div class="mb-3">
+                                <label for="old-password" class="form-label">Old Password</label>
+                                <input id="oldPwd" name="passwords[old]" type="password" class="form-control" aria-describedby="emailHelp" required>
+                                <div id="changePasswordMessage" class="form-text"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="new-password" class="form-label">New Password</label>
+                                <input id="newPwd" name="passwords[new]" type="password" class="form-control" required>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--CREATE LESSON Modal -->
+        <div class="modal fade" id="createLessonModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">New Lesson</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="createLessonForm" class="needs-validation">
+                            <div class="mb-3">
+                                <label for="newLessonTitle" class="form-label">Title</label>
+                                <input id="newLessonTitle" name="lesson[title]" type="text" class="form-control create-lesson-field" aria-describedby="emailHelp" required>
+                                <div class="form-text create-lesson-message"></div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea name="lesson[description]" type="textarea" maxlength="75" class="form-control create-lesson-field" placeholder="Describe your lesson" id="floatingTextarea2" style="height: 100px" required></textarea>
+                                <label for="floatingTextarea2">Description</label>
+                                <div class="form-text create-lesson-message"></div>
+                            </div>
+                            <div class="form mb-3">
+                                <select name="lesson[subject]" type="text" class="form-select create-lesson-field" aria-label="Floating label select example" required>
+                            <option selected>Select Subject</option>
+                            <option value="Geometry">Geometry</option>
+                            <option value="History">History</option>
+                            <option value="Literature">Literature</option>
+                          </select>
+                            </div>
+                            <div class="form mb-3">
+                                <select name="lesson[unit]" type="Number" class="form-select create-lesson-field" aria-label="Floating label select example" required>
+                          <option selected>Unit Number</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="1">4</option>
+                          <option value="2">5</option>
+                          <option value="3">6</option>
+                          <option value="3">7</option>
+                        </select>
+                                <div class="form-text create-lesson-message"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="newLessonTitle" class="form-label">File Url</label>
+                                <input name="lesson[url]" type="text" class="form-control create-lesson-field" aria-describedby="emailHelp" required>
+                                <div class="form-text create-lesson-message"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="form-text create-lesson-error-message"></div>
+                                <button type="submit" class="btn btn-outline">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--EDIT LESSON Modal -->
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Lesson</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editForm">
+                            <div class="mb-3">
+                                <label for="newLessonTitle" class="form-label">Title</label>
+                                <input name="lesson[title]" type="text" class="form-control create-lesson-field" aria-describedby="emailHelp" required>
+                                <div class="form-text create-lesson-message"></div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea name="lesson[description]" type="textarea" maxlength="75" class="form-control create-lesson-field" placeholder="Describe your lesson" style="height: 100px" required></textarea>
+                                <label for="floatingTextarea2">Description</label>
+                                <div class="form-text create-lesson-message"></div>
+                            </div>
+                            <div class="form mb-3">
+                                <select name="lesson[subject]" type="text" class="form-select create-lesson-field" required aria-label="Floating label select example">
+                        <option selected disabled value="">Select Subject</option>
+                        <option value="Geometry">Geometry</option>
+                        <option value="History">History</option>
+                        <option value="Literature">Literature</option>
+                      </select>
+                            </div>
+                            <div class="form mb-3">
+                                <select name="lesson[unit]" type="Number" class="form-select create-lesson-field" required aria-label="Floating label select example">
+                      <option selected disabled value="">Unit Number</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="1">4</option>
+                      <option value="2">5</option>
+                      <option value="3">6</option>
+                      <option value="3">7</option>
+                    </select>
+                                <div class="form-text create-lesson-message"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="newLessonTitle" class="form-label">File Url</label>
+                                <input name="lesson[url]" type="text" class="form-control create-lesson-field" aria-describedby="emailHelp" required>
+                                <div class="form-text create-lesson-message"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--DELETE LESSON Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Delete Lesson</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this lesson?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nope</button>
+                        <button id="deleteBtn" type="button" class="btn btn-primary">I'm sure</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--FAILURE Modal -->
+        <div class="modal fade" id="failureModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Sorry</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Something went wrong... Please try again later
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Got It</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- WELCOME -->
+
+        <main>
+          <div class="container p-2 pt-5 card-container">
+            <div id="allLessons" class="row g-md-5 pt-5">
+            </div>
+          </div>
+        </main>
+
+        <section>
+          <div class="container p-2 card-container">
+            <div id="myLessons" class="row  g-md-5">
+              <div>
+                  <button type="button" class="btn btn-primary btn-sm myLessonsBtn">Display My Lessons</button>
+                  <p class="form-text myLessonsMessage"></p>
+              </div>
+              <div>
+                  <h4 id="showMyLessons">My Lessons</h4>
+              </div>
+            </div>
+          </div>
+        </section>
+</body>
+
+</html>
