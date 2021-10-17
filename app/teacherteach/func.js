@@ -30,8 +30,10 @@ const addNewLesson = function (response) {
         <div class="lesson-description px-3 pb-2 h-75">
           <p class="d-none d-sm-inline fw-light fs-6 m-0">${response.lesson.description}</p>
         </div>
+        <div>
           <p class="d-none d-md-inline card-text">Unit: ${response.lesson.unit}</p>
           <p class="card-subtitle text-muted" >${response.subject}</p>
+          </div>
         </div>
          <div class="p-1">
 
@@ -73,8 +75,10 @@ const displayLessons = function (response, location) {
     <div class="lesson-description px-3 pb-2 h-75">
       <p class="d-none d-sm-inline fw-light fs-6 m-0">${lessons.description}</p>
     </div>
+    <div>
     <p class="d-none d-md-inline card-text">Unit: ${lessons.unit}</p>
     <p class="card-subtitle text-muted" >${lessons.subject}</p>
+    </div>
   </div>
 </div>
 </div>
