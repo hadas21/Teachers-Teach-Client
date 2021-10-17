@@ -21,11 +21,11 @@ const scroll = function (scrollTo) {
 const addNewLesson = function (response) {
   let lessonHtml = ' '
   lessonHtml += `
-    <div class="col-6 col-md-4 mx-auto px-sm-1 my-2">
+    <div class="col-6 col-sm-3 col-md-2 mx-auto px-sm-1 my-2">
       <div class="shadow-sm rounded card h-100 text-center">
         <div class="card-body d-flex flex-column px-1 py-3">
-        <a href="${response.url}" class="text-dark">
-          <h6 class="card-title h-50">${response.lesson.title}</h6>
+        <a href="${response.url}" class="text-dark text-decoration-none title">
+          <h6 class="title card-title h-50">${response.lesson.title}</h6>
         </a>
         <div class="lesson-description px-3 pb-2 h-75">
           <p class="d-none d-sm-inline fw-light fs-6 m-0">${response.lesson.description}</p>
@@ -60,14 +60,15 @@ const addNewLesson = function (response) {
   store.$myLessons.append(lessonHtml)
 }
 const displayLessons = function (response, location) {
+  console.log(response)
   let lessonsHtml = ' '
   response.lessons.forEach(lessons => {
     lessonsHtml += `
-        <div class="col-6 col-md-4 mx-auto px-sm-1 my-2">
+        <div class="col-6 col-sm-3 col-md-2 mx-auto px-sm-1 my-2">
   <div class="shadow-sm rounded card h-100 text-center">
   <div class="card-body d-flex flex-column px-1 py-3">
-    <a href="${lessons.url}" id="view-lesson-btn" class="text-dark">
-      <h6 class="card-title h-50">${lessons.title}</h6>
+    <a href="${lessons.url}" class="text-dark text-decoration-none">
+      <h6 class="title card-title h-50">${lessons.title}</h6>
     </a>
     <div class="lesson-description px-3 pb-2 h-75">
       <p class="d-none d-sm-inline fw-light fs-6 m-0">${lessons.description}</p>
@@ -85,11 +86,11 @@ const displayMyLessons = function (response, location) {
   let lessonsHtml = ' '
   response.lessons.forEach(lessons => {
     lessonsHtml += `
-      <div class="col-6 col-md-4 mx-auto px-sm-1 my-2">
+      <div class="col-6 col-sm-3 col-md-2 mx-auto px-sm-1 my-2">
         <div data-id="${lessons._id}" class="shadow-sm rounded card h-100 text-center">
           <div class="card-body d-flex flex-column px-1 py-3">
-           <a href="${lessons.url}" class="text-dark">
-            <h6 class="card-title h-50">${lessons.title}</h6>
+           <a href="${lessons.url}" class="text-dark text-decoration-none">
+            <h6 class="title card-title h-50">${lessons.title}</h6>
             </a>
             <div class="lesson-description px-3 pb-2 h-75">
             <p class="d-none d-sm-inline fw-light fs-6 m-0">${lessons.description}</p>
@@ -109,7 +110,7 @@ const displayMyLessons = function (response, location) {
               <i class="bi bi-trash"></i>
             </button>
 
-            <a href="${lessons.url}" class="col-4 text-dark text-decoration-none align-self-end d-none d-sm-inline mb-2 mt-2">View</a>
+            <a href="${lessons.url}" class="col-4 text-dark text-decoration-none title align-self-end d-none d-sm-inline mb-2 mt-2">View</a>
 
             <button data-id="${lessons._id}" id="editMdlBtn" type="button" class="col-6 col-sm-4 btn mb-1 mt-2 hide" data-bs-toggle="modal" data-bs-target="#editModal">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
